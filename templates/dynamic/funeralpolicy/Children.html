@@ -1,0 +1,220 @@
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#AddChildButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrChildFullNames = document.getElementById('strChildFullNames').value;
+            var varstrChildSurname = document.getElementById('strChildSurname').value;
+            var varstrChildIDNumber = document.getElementById('strChildIDNumber').value;
+            var varstrChildDateofBirth = document.getElementById('strChildDateofBirth').value;
+            var varstrChildRelationship = document.getElementById('strChildRelationship').value;
+
+
+
+            var age = getAge(varstrChildDateofBirth);
+            var IDNumberLength = varstrChildIDNumber.length;
+            var IDisNumber = isNumber(varstrChildIDNumber);
+
+            if ((age >= 0) && (age <= 21)) {
+                if (IDNumberLength == 13){
+                    if (IDisNumber == true){
+
+                    var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrFullNames=' + varstrChildFullNames +
+                            '&vstrSurname=' + varstrChildSurname + '&vstrIDNumber=' + varstrChildIDNumber +
+                            '&vstrDateofBirth=' + varstrChildDateofBirth + '&vstrRelationship=' + varstrChildRelationship;
+                    $.ajax({
+                        type: "post",
+                        url: "/dynamic/funeralpolicy/Children.html",
+                        data: dataString,
+                        cache: false,
+                        success: function (html) {
+                            $('#ChildrenInfoDiv').html(html)
+                        }
+                    });
+
+
+
+                    } else{
+                        alert("Your ID Number can only contain Numbers")
+                    }
+
+                } else{
+                    alert("Your ID Number can only contain 13 Characters")
+                }
+
+            }
+            else {
+                 alert("your Client Child should be between the Age of 0 to 21 or 25 if the child is still at school your Client Child Age = " + age)
+            }
+
+          });
+      });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#RemoveChildModalButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrRemoveIDNumber = document.getElementById('strRemoveIDNumber').value;
+
+
+
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrIDNumber=' + varstrRemoveIDNumber;
+              $.ajax({
+                    type: "post",
+                    url: "/funeral-cover/remove/child",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#RemoveStatusUpdate').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+
+{% if MessageDiag %}
+
+<label class="label label-warning">{{ MessageDiag }}</label>
+
+{% else %}
+
+
+<div class="box">
+                  <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in ChildrenList %}
+                    <tr>
+                      <!-- TODO- Call an Ajax Function to fill up the form in employeeDetails then return the form and
+                         TODO- Insert it into the DynamicLoading Div Tag in the Modal then show the modal -->
+                      <td><a href="/funeral-cover/policies/{{ member.strPolicyNum }}">{{ member.strPolicyNum }}</a></td>
+                      <td>{{ member.strFullNames }}</td>
+                      <td>{{ member.strSurname }}</td>
+                      <td>{{ member.strIDNumber }}</td>
+                      <td>{{ member.strDateOfBirth }}</td>
+                      <td>{{ member.strRelationship }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </tfoot>
+
+              </table>
+                  <div class="box box-body">
+                    <div class="box box-header">
+                       <h4>Children Details</h4>
+                    </div>
+              <form class="form-horizontal" name="ChildrenDetails" action="" method="post">
+
+                  <div class="form-group">
+                      <label for="strChildFullNames" class="col-sm-2 control-label pull-left" title="Your First and Second Names">Full Names</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strChildFullNames" name="vstrChildFullNames" placeholder="Full Names">
+                             </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="strChildSurname" class="col-sm-2 control-label pull-left" title="your Surname">Surname</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strChildSurname" name="vstrChildFullNames" placeholder="Surname">
+                             </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="strChildIDNumber" class="col-sm-2 control-label pull-left" title="your Surname">ID Number</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strChildIDNumber" name="vstrChildIDNumber" placeholder="ID Number">
+                             </div>
+                  </div>
+
+                  <!-- Date dd/mm/yyyy -->
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="Your Birth Year (yyyy-mm-dd)">Date Of Birth</label>
+                        <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="vstrChildDateofBirth" id="strChildDateofBirth" placeholder="yyyy-mm-dd">
+                            <!-- /.input group -->
+                        </div>
+                  </div>
+
+                      <!-- /.form group -->
+
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="How are you related to the child)">Relationship</label>
+                        <div class="col-sm-6">
+                                     <select class="form-control select2" style="width: 100%;" id="strChildRelationship" name="vstrChildRelationship">
+                                         <option>Daughter</option>
+                                         <option>Son</option>
+                                     </select>
+                            <!-- /.input group -->
+                        </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                      <button type="button" id="AddChildButt" name="SaveButt"  class="btn btn-success">Add Child</button>
+                      <button type="button" id="RemoveChildButt" name="RemoveButt"  class="btn btn-warning" data-toggle="modal" data-target="#RemoveChildModal">Remove Child</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                  </div>
+</div>
+
+{% endif %}
+
+<div class="modal modal-warning" id="RemoveChildModal" tabindex="-1" role="dialog" aria-labelledby="RemoveModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="RemoveModalLabel">Remove Child From Policy</h4>
+            <small>Remove Child By Specifying the ID Number</small>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input type="text" name="vstrRemoveIDNumber" id="strRemoveIDNumber" class="form-control" placeholder="ID Number">
+            <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+          </div>
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="RemoveChildModalButt">Remove</button>
+          </div>
+
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<div id="RemoveStatusUpdate">
+ <small class="label label-info">...Remove status will appear here</small>
+</div>

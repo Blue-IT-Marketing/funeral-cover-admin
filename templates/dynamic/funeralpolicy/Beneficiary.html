@@ -1,0 +1,204 @@
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#AddBeneficiaryButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrBeneficiaryFullNames = document.getElementById('strBeneficiaryFullNames').value;
+            var varstrBeneficiarySurname = document.getElementById('strBeneficiarySurname').value;
+            var varstrBeneficiaryIDNumber = document.getElementById('strBeneficiaryIDNumber').value;
+            var varstrBeneficiaryDateofBirth = document.getElementById('strBeneficiaryDateOfBirth').value;
+            var varstrBeneficiaryRelationship = document.getElementById('strBeneficiaryRelationship').value;
+
+
+
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrFullNames=' + varstrBeneficiaryFullNames +
+                    '&vstrSurname='+ varstrBeneficiarySurname + '&vstrIDNumber=' + varstrBeneficiaryIDNumber +
+                    '&vstrDateofBirth=' + varstrBeneficiaryDateofBirth + '&vstrRelationship=' + varstrBeneficiaryRelationship ;
+              $.ajax({
+                    type: "post",
+                    url: "/dynamic/funeralpolicy/Beneficiary.html",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#BeneficiaryInfoDiv').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#RemoveBeneficiaryModalButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrRemoveIDNumber = document.getElementById('strRemoveExtendedIDNumber').value;
+
+
+
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrIDNumber=' + varstrRemoveIDNumber;
+              $.ajax({
+                    type: "post",
+                    url: "/funeral-cover/remove/beneficiary",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#RemoveStatusUpdate').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+
+
+
+{% if MessageDiag %}
+
+<label class="label label-warning">{{ MessageDiag }}</label>
+
+{% else %}
+
+<div class="box">
+            <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in BeneficiaryList %}
+                    <tr>
+                      <!-- TODO- Call an Ajax Function to fill up the form in employeeDetails then return the form and
+                         TODO- Insert it into the DynamicLoading Div Tag in the Modal then show the modal -->
+                      <td><a href="/funeral-cover/policies/{{ member.strPolicyNum }}">{{ member.strPolicyNum }}</a></td>
+                      <td>{{ member.strFullNames }}</td>
+                      <td>{{ member.strSurname }}</td>
+                      <td>{{ member.strIDNumber }}</td>
+                      <td>{{ member.strDateOfBirth }}</td>
+                      <td>{{ member.strRelationship }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </tfoot>
+
+              </table>
+                  <div class="box box-body">
+                    <div class="box box-header">
+                       <h4>Beneficiary Details</h4>
+                    </div>
+                        <form class="form-horizontal" name="SpouseDetails" action="" method="post">
+
+                  <div class="form-group">
+                      <label for="strBeneficiaryFullNames" class="col-sm-2 control-label pull-left" title="Your First and Second Names">Full Names</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strBeneficiaryFullNames" name="vstrBeneficiaryFullNames" placeholder="Full Names">
+                             </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="strBeneficiarySurname" class="col-sm-2 control-label pull-left" title="your Surname">Surname</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strBeneficiarySurname" name="vstrBeneficiarySurname" placeholder="Surname">
+                             </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="strBeneficiaryIDNumber" class="col-sm-2 control-label pull-left" title="Your Surname">ID Number</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strBeneficiaryIDNumber" name="vstrBeneficiaryIDNumber" placeholder="ID Number">
+                             </div>
+                  </div>
+
+                  <!-- Date dd/mm/yyyy -->
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="Your Birth Year (yyyy-mm-dd)">Date Of Birth</label>
+                        <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="strBeneficiaryDateOfBirth" name="vstrDateOfBirth" placeholder="yyyy-mm-dd">
+                            <!-- /.input group -->
+                        </div>
+                  </div>
+
+                      <!-- /.form group -->
+
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="How are you related to the member)">Relationship</label>
+                        <div class="col-sm-6">
+                             <select class="form-control select2" style="width: 100%;" id="strBeneficiaryRelationship" name="strBeneficiaryRelationship">
+                                 <option value="Daughter">Daughter</option>
+                                 <option value="Son">Son</option>
+                                 <option value="Father">Father</option>
+                                 <option value="Mother">Mother</option>
+                                 <option value="Grand Mother">Grand Mother</option>
+                                 <option value="Grand Father">Grand Father</option>
+                                 <option value="Cousin">Cousin</option>
+                                 <option value="Wife">Wife</option>
+                                 <option value="Husband">Husband</option>
+                                 <option value="Other">Other</option>
+                             </select>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                      <button type="button" id="AddBeneficiaryButt" name="SaveButt"  class="btn btn-success">Add Beneficiary</button>
+                      <button type="button" id="RemoveBeneficiaryButt" name="RemoveButt"  class="btn btn-warning" data-toggle="modal" data-target="#RemoveBeneficiaryModal">Remove Beneficiary</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                  </div>
+</div>
+
+{% endif %}
+
+<div class="modal modal-warning" id="RemoveBeneficiaryModal" tabindex="-1" role="dialog" aria-labelledby="RemoveModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="RemoveModalLabel">Remove Beneficiary From Policy</h4>
+            <small>Remove Beneficiary Family Member By ID Number</small>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input type="text" name="vstrRemoveIDNumber" id="strRemoveExtendedIDNumber" class="form-control" placeholder="ID Number">
+            <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+          </div>
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="RemoveBeneficiaryModalButt">Remove</button>
+          </div>
+
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div id="RemoveStatusUpdate">
+ <small class="label label-info">...Remove status will appear here</small>
+</div>
+

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Pro Finance | Employees Funeral Covers</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Ion Slider -->
+  <link rel="stylesheet" href="../static/plugins/ionslider/ion.rangeSlider.css">
+  <!-- ion slider Nice -->
+  <link rel="stylesheet" href="../static/plugins/ionslider/ion.rangeSlider.skinNice.css">
+  <!-- bootstrap slider -->
+  <link rel="stylesheet" href="../static/plugins/bootstrap-slider/slider.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../static/plugins/daterangepicker/daterangepicker.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="../static/plugins/datepicker/datepicker3.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../static/plugins/iCheck/all.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../static/plugins/colorpicker/bootstrap-colorpicker.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="../static/plugins/timepicker/bootstrap-timepicker.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../static/plugins/select2/select2.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../static/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="../static/plugins/pace/pace.min.css">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+<!-- jQuery 2.2.3 -->
+<script src="../static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#SpouseButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/dynamic/funeralpolicy/Spouse.html",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#SpouseInfoDiv').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ChildrenButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/dynamic/funeralpolicy/Children.html",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ChildrenInfoDiv').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ExtendedButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/dynamic/funeralpolicy/Extended.html",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ExtendedInfoDiv').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#BeneficiaryButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/dynamic/funeralpolicy/Beneficiary.html",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#BeneficiaryInfoDiv').html(html)
+                  }
+              });
+          });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#SingleButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/Single.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#FamilyButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/Family.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ExtendedCoverButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/ExtendedCover.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#SeniorMemberCoverButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/SeniorMemberBenefits.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#AmountPayableButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/AmountPayableSummary.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#PaymentDetailsButt').click(function(){
+           $('#DynamicFormContent').load("/dynamic/funeralpolicy/PaymentDetails.html")
+        });
+    });
+</script>
+<script type="text/javascript">
+    function isNumber(n){
+    return typeof(n) != "boolean" && !isNaN(n);
+}
+</script>
+<script type="text/javascript">
+function getAge(dateString) {
+
+    var dates = dateString.split("-");
+    var d = new Date();
+
+    var userday = dates[2];
+    var usermonth = dates[1];
+    var useryear = dates[0];
+
+    var curday = d.getDate();
+    var curmonth = d.getMonth()+1;
+    var curyear = d.getFullYear();
+
+    var age = curyear - useryear;
+
+    if((curmonth < usermonth) || ( (curmonth == usermonth) && curday < userday   )){
+        age--;
+    }
+    return age;
+}
+</script>
+<script type="text/javascript">
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#CreatePolicyHolder').click(function(){
+            var varstrTitle = document.getElementById('strTitle').value;
+            var varstrSurname = document.getElementById('strSurname').value;
+            var varstrFullnames = document.getElementById('strFullnames').value;
+            var varstrIDNumber = document.getElementById('strIDNumber').value;
+            var varstrDateofBirth = document.getElementById('strDateofBirth').value;
+            var varstrNationality = document.getElementById('strNationality').value;
+            var varstrResidential1 = document.getElementById('strResidential1').value;
+            var varstrResidential2 = document.getElementById('strResidential2').value;
+            var varstrResidentialProvince = document.getElementById('strResidentialProvince').value;
+            var varstrResidentialCountry = document.getElementById('strResidentialCountry').value;
+            var varstrResidentialPostalCode = document.getElementById('strResidentialPostalCode').value;
+            var varstrPostalAddress1 = document.getElementById('strPostalAddress1').value;
+            var varstrPostalAddressCityTown = document.getElementById('strPostalAddressCityTown').value;
+            var varstrPostalProvince= document.getElementById('strPostalProvince').value;
+            var varstrPostalCountry = document.getElementById('strPostalCountry').value;
+            var varstrPostalCode = document.getElementById('strPostalCode').value;
+            var varstrDayTimeNumber = document.getElementById('strDayTimeNumber').value;
+            var varstrCellNumber = document.getElementById('strCellNumber').value;
+            var varstrEmail = document.getElementById('strEmail').value;
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var age = getAge(varstrDateofBirth);
+            var idLength = varstrIDNumber.length;
+            var IDisNumber = isNumber(varstrIDNumber);
+            var CellLength = varstrCellNumber.length;
+            var CellIsNumber = isNumber(varstrCellNumber);
+            var TelLength = varstrDayTimeNumber.length;
+            var TelIsNumber = isNumber(varstrDayTimeNumber);
+            var IsEmailValid = validateEmail(varstrEmail);
+            if ((age >= 18) && (age <= 130)){
+                if (idLength == 13){
+                    if (IDisNumber == true ){
+                        if (CellLength == 10){
+                            if (CellIsNumber == true){
+                                if (TelLength == 10){
+                                    if (TelIsNumber == true){
+                                        if (IsEmailValid == true){
+                                        var dataString = '&vstrTitle=' + varstrTitle + '&vstrSurname='+ varstrSurname + '&vstrFullnames='+ varstrFullnames +
+                                                        '&vstrIDNumber='+ varstrIDNumber + '&vstrDateofBirth='+ varstrDateofBirth + '&vstrNationality='+ varstrNationality +
+                                                        '&vstrResidential1='+ varstrResidential1 + '&vstrResidential2='+ varstrResidential2 + '&vstrResidentialProvince=' + varstrResidentialProvince +
+                                                        '&vstrResidentialCountry=' + varstrResidentialCountry + '&vstrResidentialPostalCode=' + varstrResidentialPostalCode +
+                                                        '&vstrPostalAddress1=' + varstrPostalAddress1 + '&vstrPostalAddressCityTown='+ varstrPostalAddressCityTown + '&vstrPostalProvince=' + varstrPostalProvince +
+                                                        '&vstrPostalCountry='+ varstrPostalCountry + '&vstrPostalCode=' + varstrPostalCode + '&vstrDayTimeNumber='+ varstrDayTimeNumber +
+                                                        '&vstrCellNumber='+ varstrCellNumber + '&vstrEmail=' + varstrEmail + '&vstrPolicyNumber=' + varstrPolicyNumber;
+                                          $.ajax({
+                                                type: "post",
+                                                url: "/employees/funeral-cover",
+                                                data: dataString,
+                                                cache: false,
+                                              success: function(html){
+                                                $('#CreatePolicyHolderResponseDiv').html(html)
+                                              }});
+                                        } else{
+                                            alert("Your Email Address is not Valid Email = " + varstrEmail)}} else {
+                                        alert("Tel/Day-Time Number can only contain Numbers")}
+                                }else {alert("Tel/Day Time Number can only be Ten Characters")}
+                            }else{alert("Cell Phone Number can only Contain Numbers")}
+                        }else{alert("Cell Phone Number Length can only Be 10 Characters Long")}
+                    }else{alert("ID Number should contain only Digits This is Your ID Number = " + varstrIDNumber)}
+                }else{alert("ID Number Length must be thirteen Characters your ID Number Length = " + idLength)}
+          } else{alert("Policy Holder should be between the Age of 18 of 60 your client Age = " + age)}
+        });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#CreateQuoteButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/admin/active-policy/create-quote",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#DashBoardInfoDive').html(html)
+                  }
+              });
+          });
+      });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#PaymentDetailsButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/admin/active-policy/payment-details",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#DashBoardInfoDive').html(html)
+                  }
+              });
+          });
+      });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ActivatePolicyButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+              $.ajax({
+                    type: "get",
+                    url: "/admin/active-policy/activate",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#DashBoardInfoDive').html(html)
+                  }
+              });
+          });
+      });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('#DynamicHeader').load("/navigation/header")
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('#DynamicSideBar').load("/navigation/sidebar")
+    });
+</script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Loading the Headerfile Dynamically -->
+  <div id="DynamicHeader"></div>
+  <!-- =============================================== -->
+  <!-- Left side column. contains the sidebar -->
+  <div id="DynamicSideBar"></div>
+  <!-- =============================================== -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Pro Finance
+        <small>Cover Management Solution</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/employees"><i class="fa fa-dashboard"></i> Employees</a></li>
+        <li class="active"><a href="/employees/funeral-cover"><i class="fa fa-dashboard"></i> Funeral Cover</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Employees Section</h3>
+          <small>Funeral Covers</small>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-info">
+                    <!-- /.box -->
+                  <div class="col-sm-3">
+                    <a href="/employees/funeral-cover"   class="btn btn-warning btn-block">Refresh</a>
+                  </div>
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li   class="active"><a href="#NewCreateCovers" data-toggle="tab">Create/Edit Covers</a></li>
+              <li><a href="#FuneralCover" data-toggle="tab">Funeral Cover</a></li>
+            </ul>
+            <div class="tab-content">
+
+
+              <div class="tab-pane" id="FuneralCover">
+
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Funeral Covers</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="ActivePolicyListTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>PolicyNum</th>
+                  <th>ID</th>
+                  <th>Surname</th>
+                  <th>Full Names</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for policy in PolicyList %}
+                <tr>
+                  <td><a href="/funeral-cover/client/{{ policy.strPolicyNum }}"> {{ policy.strPolicyNum }} </a></td>
+                  <td>{{ policy.strIDNumber }}</td>
+                  <td>{{ policy.strSurname }}</td>
+                  <td>{{ policy.strFullNames }}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>PolicyNum</th>
+                  <th>ID</th>
+                  <th>Surname</th>
+                  <th>Full Names</th>
+
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+              </div>
+
+              <div class="active tab-pane" id="NewCreateCovers">
+                <span class="label label-info">Create/Edit New Covers</span>
+                {% if "YES" in bolFuneralCoverEditAccess %}
+                  <div class="row">
+                     <div class="col-md-3">
+
+                      <!-- Profile Image -->
+                      <div class="box box-primary">
+                        <div class="box-body box-profile">
+                          <h4>Data Capture</h4>
+                          <a href="#PolicyHolder" class="btn btn-primary btn-block" id="PolicyHolderButt" data-toggle="tab"><b>Create Policy</b></a>
+                          <a href="#Spouse" class="btn btn-primary btn-block" id="SpouseButt" data-toggle="tab"><b>Reload Spouse</b></a>
+                          <a href="#Children" class="btn btn-primary btn-block" id="ChildrenButt" data-toggle="tab"><b>Reload Child</b></a>
+                          <a href="#Extended" class="btn btn-primary btn-block" id="ExtendedButt" data-toggle="tab"><b>Reload Extended</b></a>
+                          <a href="#Beneficiary" class="btn btn-primary btn-block" id="BeneficiaryButt" data-toggle="tab"><b>Reload Beneficiary</b></a>
+                        </div>
+
+                        <!-- /.box-body -->
+                      </div>
+
+                    </div>
+                     <!-- /.col -->
+                    <div class="col-md-9">
+                      <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+
+                          <li class="active"><a href="#PolicyHolder" data-toggle="tab">Policy Holder</a></li>
+                          <li><a href="#Spouse" data-toggle="tab">Spouse</a></li>
+                          <li><a href="#Children" data-toggle="tab">Children</a></li>
+                          <li><a href="#Extended" data-toggle="tab">Extended</a></li>
+                          <li><a href="#Beneficiary" data-toggle="tab">Beneficiary</a></li>
+                          <li><a href="#Dashboard" data-toggle="tab">Dashboard</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+
+                          <div class="active tab-pane" id="PolicyHolder">
+                            <span class="label label-info">Policy Holder</span>
+                             <div class="box">
+                                  <div class="box box-body">
+                    <label class="label label-success">Policy Number : {{ vstrPolicyNumber }}</label>
+
+                    <div class="box box-header">
+                       <h4>Policy Holder</h4>
+                    </div>
+                      <form class="form-horizontal" name="CreateNewFuneralCover" id="frmCreateNewFuneralCover" action="/dynamic/funeralpolicy/PolicyHolder.html" method="post">
+
+                        <div class="form-group">
+                            <label for="strTitle" class="col-sm-2 control-label pull-left" title="The Name of your Profile">Title</label>
+                            <div class="col-sm-6">
+                              <select class="form-control select2" style="width: 100%;" id="strTitle" name="vstrTitle">
+                                {% if vstrTitle == 'MR' %}
+                                  <option selected="selected" value="MR">MR</option>
+                                {% else %}
+                                  <option value="MR">MR</option>
+                                {% endif %}
+
+                                {% if vstrTitle == 'Mrs' %}
+                                    <option selected="selected" value="Mrs">Mrs</option>
+                                {% else %}
+                                    <option value="Mrs">Mrs</option>
+                                {% endif %}
+
+
+                                {% if vstrTitle %}
+                                  <option selected="selected" value="Miss">Miss</option>
+                                {% else %}
+                                  <option value="Miss">Miss</option>
+                                {% endif %}
+
+                              </select>
+                             </div>
+                        </div>
+                        <div class="form-group">
+                             <label for="strSurname" class="col-sm-2 control-label" title="Enter the Surname of your Lead">Surname</label>
+                              <div class="col-sm-6">
+                            {% if vstrSurname %}
+                              <input type="text" class="form-control" id="strSurname" name="vstrSurname" placeholder="{{ vstrSurname }}" value="{{ vstrSurname }}">
+                            {% else %}
+                              <input type="text" class="form-control" id="strSurname" name="vstrSurname" placeholder="Surname">
+                            {% endif %}
+                              </div>
+
+                        </div>
+                        <div class="form-group">
+                      <label for="strFullnames" class="col-sm-2 control-label" title="Fullnames of your Lead">Full Names</label>
+                      <div class="col-sm-6">
+                      {% if vstrFullnames %}
+                        <input type="text" class="form-control" id="strFullnames" name="vstrFullnames" placeholder="{{ vstrFullnames }}" value="{{ vstrFullnames }}">
+                      {% else %}
+                        <input type="text" class="form-control" id="strFullnames" name="vstrFullnames" placeholder="Full Names">
+                      {% endif %}
+                      </div>
+
+                  </div>
+                        <div class="form-group">
+                      <label for="strIDNumber" class="col-sm-2 control-label" title="Profile Website">ID/Passport Number</label>
+                      <div class="col-sm-6">
+                      {% if vstrIDNumber %}
+                      <input type="text" class="form-control" id="strIDNumber" name="vstrIDNumber" placeholder="{{ vstrIDNumber }}" value="{{ vstrIDNumber }}">
+                      {% else %}
+                      <input type="text" class="form-control" id="strIDNumber" name="vstrIDNumber" placeholder="ID Number">
+                      {% endif %}
+                      </div>
+                  </div>
+                        <div class="form-group">
+                    <label for="strDateofBirth" class="col-sm-2 control-label" title="Fund My Campaign By">Date of Birth</label>
+                    <div class="col-sm-6">
+                      {% if vstrDateofBirth %}
+                       <input type="text" class="form-control" id="strDateofBirth" name="vstrDateofBirth" placeholder="{{ vstrDateofBirth }}" value="{{ vstrDateofBirth }}">
+                      {% else %}
+                       <input type="text" class="form-control" id="strDateofBirth" name="vstrDateofBirth" placeholder="yyyy-mm-dd">
+                      {% endif %}
+
+                    </div>
+                  </div>
+                        <div class="form-group">
+
+                    <label for="strNationality" class="col-sm-2 control-label" title="Nationality">Nationality</label>
+                    <div class="col-sm-6">
+                      {% if vstrNationality %}
+                          <input class="form-control" id="strNationality" name="vstrNationality" value="{{ vstrNationality }}">
+                      {% else %}
+                          <input class="form-control" id="strNationality" name="vstrNationality"  placeholder="Nationality">
+                      {% endif %}
+
+
+                   </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="strResidential1" class="col-sm-2 control-label" title="Residential Address">Residential</label>
+                    <div class="col-sm-6">
+                    {% if vstrResidential1 %}
+                      <input type="text" class="form-control" id="strResidential1" name="vstrResidential1" placeholder="{{ vstrResidential1 }}" value="{{ vstrResidential1 }}">
+                      <input type="text" class="form-control" id="strResidential2" name="vstrResidential2" placeholder="{{ vstrResidential2 }}" value="{{ vstrResidential2 }}">
+                      <input type="text" class="form-control" id="strResidentialProvince" name="vstrResidentialProvince" value="{{ vstrResidentialProvince }}">
+                      <input type="text" class="form-control" id="strResidentialCountry" name="vstrResidentialCountry" value="{{ vstrResidentialCountry }}">
+                      <input type="text" class="form-control" id="strResidentialPostalCode" name="vstrResidentialPostalCode" value="{{ vstrResidentialPostalCode }}">
+
+                    {% else %}
+                    <input type="text" class="form-control" id="strResidential1" name="vstrResidential1" placeholder="Residential">
+                    <input type="text" class="form-control" id="strResidential2" name="vstrResidential2" placeholder="Residential Line 2">
+                    <input type="text" class="form-control" id="strResidentialProvince" name="vstrResidentialProvince" placeholder="Province">
+                      <input type="text" class="form-control" id="strResidentialCountry" name="vstrResidentialCountry" placeholder="Country">
+                    <input type="text" class="form-control" id="strResidentialPostalCode" name="vstrResidentialPostalCode" placeholder="Postal Code">
+                    {% endif %}
+                   </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="strPostalAddress1" class="col-sm-2 control-label" title="Postal Address">Postal</label>
+                    <div class="col-sm-6">
+                    {% if vstrPostalAddress1 %}
+                      <input type="text" class="form-control" id="strPostalAddress1" name="vstrPostalAddress1"  value="{{ vstrPostalAddress1 }}">
+                      <input type="text" class="form-control" id="strPostalAddressCityTown" name="vstrPostalAddressCityTown" value="{{ vstrPostalAddressCityTown }}">
+                      <input type="text" class="form-control" id="strPostalProvince" name="vstrPostalProvince" value="{{ vstrPostalProvince }}">
+                      <input type="text" class="form-control" id="strPostalCountry" name="vstrPostalCountry" value="{{ vstrPostalCountry }}">
+                      <input type="text" class="form-control" id="strPostalCode" name="vstrPostalCode" value="{{ vstrPostalCode }}">
+
+                    {% else %}
+                    <input type="text" class="form-control" id="strPostalAddress1" name="vstrPostalAddress1" placeholder="Postal Address">
+                    <input type="text" class="form-control" id="strPostalAddressCityTown" name="vstrPostalAddressCityTown" placeholder="Postal Address Line 2">
+                    <input type="text" class="form-control" id="strPostalProvince" name="vstrPostalProvince" placeholder="Province">
+                    <input type="text" class="form-control" id="strPostalCountry" name="vstrPostalCountry" placeholder="Country">
+                    <input type="text" class="form-control" id="strPostalCode" name="vstrPostalCode" placeholder="Postal Code">
+                    {% endif %}
+                   </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="strDayTimeNumber" class="col-sm-2 control-label" title="Contact Details">Tel/Cell</label>
+                    <div class="col-sm-6">
+                      {% if vstrDayTimeNumber %}
+                        <input type="text" class="form-control" id="strDayTimeNumber" name="vstrDayTimeNumber" value="{{ vstrDayTimeNumber }}">
+                      {% else %}
+                        <input type="text" class="form-control" id="strDayTimeNumber" name="vstrDayTimeNumber" placeholder="Day Time Number">
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="strCellNumber" class="col-sm-2 control-label" title="Contact Details">Cell Number</label>
+                    <div class="col-sm-6">
+                      {% if vstrCellNumber %}
+                        <input type="text" class="form-control" id="strCellNumber" name="vstrCellNumber" value="{{ vstrCellNumber }}">
+                      {% else %}
+                        <input type="text" class="form-control" id="strCellNumber" name="vstrCellNumber" placeholder="Cell Number">
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="strEmail" class="col-sm-2 control-label" title="Contact Details">Email</label>
+                    <div class="col-sm-6">
+                      {% if vstrEmail %}
+                        <input type="email" class="form-control" id="strEmail" name="vstrEmail" value="{{ vstrEmail }}">
+                      {% else %}
+                        <input type="email" class="form-control" id="strEmail" name="vstrEmail" placeholder="Email">
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                      <input type="hidden" id="strPolicyNumber" name="vstrPolicyNumber" value="{{ vstrPolicyNumber }}">
+                      <button type="button" id="CreatePolicyHolder" name="SaveButt"  class="btn btn-success">Create Policy Holder</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                  </div>
+                </div>
+                          </div>
+                          <div class="tab-pane" id="Spouse">
+                            <span class="label label-info">Spouse</span>
+                               <!--TODO Add List of Spouses Here -->
+                               <div id="SpouseInfoDiv">
+
+                               </div>
+                          </div>
+                          <div class="tab-pane" id="Children">
+                            <span class="label label-info">Children</span>
+                            <!-- TODO Add List of Children -->
+                             <div id="ChildrenInfoDiv">
+
+                             </div>
+                          </div>
+                          <div class="tab-pane" id="Extended">
+                            <span class="label label-info">Extended</span>
+                            <!--TODO Extended List-->
+                            <div id="ExtendedInfoDiv">
+
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="Beneficiary">
+                            <span class="label label-info">Beneficiary</span>
+                            <!-- TODO Beneficiary List-->
+                            <div id="BeneficiaryInfoDiv">
+
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="Dashboard">
+                            <span class="label label-info">Dashboard</span>
+                            <div class="box-body box-profile">
+                          <h4>Premiums</h4>
+                          <div class="row">
+                          <div class="col-md-3">
+                              <a href="#" class="btn btn-bitbucket btn-block" id="CreateQuoteButt"><b>Create Qoute</b></a>
+                              <a href="#" class="btn btn-bitbucket btn-block" id="PaymentDetailsButt"><b>Payment Details</b></a>
+                              <a href="#" class="btn btn-bitbucket btn-block" id="ActivatePolicyButt"><b>Activate Policy</b></a>
+                          </div>
+                          <div class="col-md-9">
+
+                              <div id="DashBoardInfoDive">
+
+                              </div>
+
+                          </div>
+                          </div>
+                        </div>
+
+                          </div>
+
+                        </div>
+                        <!-- /.tab-content -->
+                      </div>
+                      <!-- /.nav-tabs-custom -->
+                    </div>
+                     <!-- /.col -->
+                  </div>
+                   <!-- /.row -->
+                {% else %}
+              <div class="box box-comments">
+                  <div class="box box-comment">
+                      You are not allowed to edit Funeral Covers Please ask your immediate manager for Access Rights
+                  </div>
+                  <div class="box box-comment">
+                      <div class="form-group">
+                          <label class="control-label col-sm-2">Employee Code</label>
+                          <div class="col-sm-9">
+                            <input type="text" id="strEmployeeCode" name="vstrEmployeeCode">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="box box-comment">
+                      <button type="button" class="btn btn-success btn-block">Request Access</button>
+                  </div>
+              </div>
+              {% endif %}
+              </div>
+
+           </div>
+          </div>
+        </div>
+
+
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <div class="box box-info">
+              <div class="box box-title">
+                <label class="label label-primary">Active Policy</label>
+               </div>
+              <div id="CreatePolicyHolderResponseDiv">
+
+              </div>
+
+
+
+             <a href="#" class="btn btn-danger btn-block" id="NewPolicy" data-toggle="modal" data-target="#CreateModal"><b>Close Active Policy</b></a>
+          </div>
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Design by</b> <a href="http://blueitmarketing.com">Blue IT Marketing</a>
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="http://blueitmarketing.com">Pro Finance</a>.</strong> All rights
+    reserved.
+  </footer>
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+
+        <!-- Modal -->
+
+        <!-- Modal -->
+
+        <!-- Modal -->
+    <div class="modal modal-danger" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="CreateModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="CreateModalLabel">Close Active Policy</h4>
+            <small>Close Active Policy and Open a New Policy </small>
+          </div>
+          <div class="modal-body">
+            <form action="/funeral/create" method="get">
+
+       <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Close Active Policy</button>
+          </div>
+
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!-- Bootstrap 3.3.6 -->
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="../static/plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="../static/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../static/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../static/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="../static/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../static/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../static/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="../static/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="../static/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="../static/plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+
+<!-- SlimScroll -->
+<script src="../static/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../static/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../static/dist/js/demo.js"></script>
+
+
+<!-- DataTables -->
+<script src="../static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<!-- Ion Slider -->
+<script src="../static/plugins/ionslider/ion.rangeSlider.min.js"></script>
+<!-- Bootstrap slider -->
+<script src="../static/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+
+
+<!-- PACE -->
+<script src="../static/plugins/pace/pace.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+
+    $('#ActivePolicyListTable').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
+    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+    //Date range picker
+    $('#reservation').daterangepicker();
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+        {
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
+        },
+        function (start, end) {
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+    );
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    });
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass: 'iradio_minimal-red'
+    });
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
+    //Colorpicker
+    $(".my-colorpicker1").colorpicker();
+    //color picker with addon
+    $(".my-colorpicker2").colorpicker();
+
+    //Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

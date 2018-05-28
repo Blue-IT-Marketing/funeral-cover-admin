@@ -1,0 +1,618 @@
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#CalculateButt').click(function(){
+
+
+            var premium = 0;
+            var PlanChoiceList = document.getElementsByName('FamilyPlanChoice');
+            var PlanChoice;
+            for(var i = 0; i < PlanChoiceList.length; i++){
+                if(PlanChoiceList[i].checked){
+                    PlanChoice = PlanChoiceList[i].value;
+                }
+            }
+
+            if (PlanChoice == "A"){
+                premium = 50;
+            }
+
+            if (PlanChoice == "B"){
+                premium = 60;
+            }
+
+            if (PlanChoice == "C"){
+                premium = 85;
+            }
+
+            if (PlanChoice == "D"){
+                premium = 95;
+            }
+
+
+            var DOBList = document.getElementsByName('strDateofBirths');
+            var thisDOB;
+
+            for(var ir = 0; ir < DOBList.length; ir++){
+                if(DOBList[ir].checked){
+                    thisDOB = DOBList[ir].value;
+                    var thisAge = getAge(thisDOB);
+                    var ExtendedList = document.getElementsByName('ExtendedPlanChoice');
+                    var ExtendedChoice;
+                    for(var ii = 0; ii < ExtendedList.length; ii++){
+                        if(ExtendedList[ii].checked){
+                            ExtendedChoice = ExtendedList[ii].value;
+
+                            if (ExtendedChoice == "A"){
+                                if ((thisAge >= 1 ) && (thisAge <= 12)){
+                                    premium = premium + 25;
+                                }
+                                if ((thisAge >= 13) && (thisAge <= 25)){
+                                    premium = premium + 25;
+                                }
+                                if ((thisAge >= 26) && (thisAge <= 35)){
+                                    premium = premium + 33;
+                                }
+                                if ((thisAge >= 36) && (thisAge <= 65)){
+                                    premium = premium + 35;
+                                }
+                                if ((thisAge >= 66) && (thisAge <= 85)){
+                                    premium = premium + 65;
+                                }
+                                if ((thisAge >= 86)){
+                                    premium = premium + 70;
+                                }
+
+                            }
+                            if (ExtendedChoice == "B"){
+                                if ((thisAge >= 1 ) && (thisAge <= 12)){
+                                    premium = premium + 30;
+                                }
+                                if ((thisAge >= 13) && (thisAge <= 25)){
+                                    premium = premium + 30;
+                                }
+                                if ((thisAge >= 26) && (thisAge <= 35)){
+                                    premium = premium + 35;
+                                }
+                                if ((thisAge >= 36) && (thisAge <= 65)){
+                                    premium = premium + 40;
+                                }
+                                if ((thisAge >= 66) && (thisAge <= 85)){
+                                    premium = premium + 70;
+                                }
+                                if ((thisAge >= 86)){
+                                    premium = premium + 80;
+                                }
+
+                            }
+                            if (ExtendedChoice == "C"){
+                                if ((thisAge >= 1 ) && (thisAge <= 12)){
+                                    premium = premium + 40;
+                                }
+                                if ((thisAge >= 13) && (thisAge <= 25)){
+                                    premium = premium + 45;
+                                }
+                                if ((thisAge >= 26) && (thisAge <= 35)){
+                                    premium = premium + 50;
+                                }
+                                if ((thisAge >= 36) && (thisAge <= 65)){
+                                    premium = premium + 55;
+                                }
+                                if ((thisAge >= 66) && (thisAge <= 85)){
+                                    premium = premium + 75;
+                                }
+                                if ((thisAge >= 86)){
+                                    premium = 0;
+                                }
+
+                            }
+                            if (ExtendedChoice == "D"){
+                                if ((thisAge >= 1 ) && (thisAge <= 12)){
+                                    premium = premium + 50;
+                                }
+                                if ((thisAge >= 13) && (thisAge <= 25)){
+                                    premium = premium + 55;
+                                }
+                                if ((thisAge >= 26) && (thisAge <= 35)){
+                                    premium = premium + 60;
+                                }
+                                if ((thisAge >= 36) && (thisAge <= 65)){
+                                    premium = premium + 65;
+                                }
+                                if ((thisAge >= 66) && (thisAge <= 85)){
+                                    premium = premium + 90;
+                                }
+                                if ((thisAge >= 86)){
+                                    premium = 0;
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            document.getElementById('strTotalPremiums').value = premium;
+          });
+      });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#SaveExtendedButt').click(function () {
+        var varstrPolicyNumber = document.getElementById('vstrPolicyNum').value;
+        var varvstrPaymentDay = document.getElementById('strPaymentDay').value;
+        var varvstrTotalPremiums = document.getElementById('strTotalPremiums').value;
+        var FamilyPlanChoiceList = document.getElementsByName('FamilyPlanChoice');
+        var FamilyPlanChoice;
+        for (var i = 0; i < FamilyPlanChoiceList.length; i++) {
+            if (FamilyPlanChoiceList[i].checked) {
+                FamilyPlanChoice = FamilyPlanChoiceList[i].value;
+            }
+        }
+        var ExtendedList = document.getElementsByName('ExtendedPlanChoice');
+        var ExtendedChoice;
+        for(var ii = 0; ii < ExtendedList.length; ii++) {
+            if (ExtendedList[ii].checked) {
+                ExtendedChoice = ExtendedList[ii].value;
+            }
+        }
+
+        var vstrPaymentDay = document.getElementById('strPaymentDay').value;
+        var vstrClientSignature = document.getElementById('strClientSignature').value;
+        var vstrEmployeeSignature = document.getElementById('strEmployeeSignature').value;
+        var vstrTotalPremium = document.getElementById('strTotalPremiums').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber+ '&vstrPaymentDay=' + varvstrPaymentDay +
+                    '&vstrTotalPremiums=' + varvstrTotalPremiums + '&vstrFamilyPlanChoice=' + FamilyPlanChoice + '&vstrExtendedPlanChoice=' + ExtendedChoice + '&vstrPaymentDay=' + vstrPaymentDay +
+                    '&vstrClientSignature=' + vstrClientSignature + '&vstrEmployeeSignature='+ vstrEmployeeSignature +
+                    '&vstrTotalPremium=' + vstrTotalPremium;
+              $.ajax({
+                    type: "get",
+                    url: "/funeral/create/extended",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ActionButtonResults').html(html)
+                  }
+              });
+    });
+});
+</script>
+<h2>Extended Family Cover Quote</h2>
+<div class="box box-body">
+    <div class="box box-title">
+        <h3>Policy Number : {{ strPolicyNum }}</h3>
+        <input type="hidden" id="vstrPolicyNum" value="{{ strPolicyNum }}">
+    </div>
+    <div class="box box-info">
+        <div class="box box-title">
+            <h4>Principal Member</h4>
+        </div>
+        <table id="PrincipalMemberTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                  <th>ID Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>DOB</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for Principal in PrincipalMemberList %}
+                <tr>
+                  <td>{{ Principal.strIDNumber }}</td>
+                  <td>{{ Principal.strFullNames }}</td>
+                  <td>{{ Principal.strSurname }}</td>
+                  <td>{{ Principal.strDateOfBirth }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="box box-info">
+        <div class="box box-title">
+            <h4>Spouse</h4>
+        </div>
+        <table id="SpouseDetailsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Names</th>
+                    <th>Surname</th>
+                    <th>Relationship</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Spouse in SpouseList %}
+                <tr>
+                    <td>{{ Spouse.strIDNumber }}</td>
+                    <td>{{ Spouse.strFullNames }}</td>
+                    <td>{{ Spouse.strSurname }}</td>
+                    <td>{{ Spouse.strRelationship }}</td>
+                    <td>{{ Spouse.strDateOfBirth  }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="box box-info">
+        <div class="box box-title">
+            <h4>Children</h4>
+        </div>
+        <table id="ChildrensDetailsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Names</th>
+                    <th>Surname</th>
+                    <th>Relationship</th>
+                    <th>DOB</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for Child in ChildrensList %}
+                <tr>
+                    <td>{{ Child.strIDNumber }}</td>
+                    <td>{{ Child.strFullNames }}</td>
+                    <td>{{ Child.strSurname }}</td>
+                    <td>{{ Child.strRelationship }}</td>
+                    <td>{{ Child.strDateOfBirth }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+
+      <div class="box box-info">
+        <div class="box box-title">
+            <h4>Extended</h4>
+        </div>
+        <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Names</th>
+                    <th>Surname</th>
+                    <th>Relationship</th>
+                    <th>DOB</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for Member in ExtendedList %}
+                <tr>
+                    <td>{{ Member.strIDNumber }}</td>
+                    <td>{{ Member.strFullNames }}</td>
+                    <td>{{ Member.strSurname }}</td>
+                    <td>{{ Member.strRelationship }}</td>
+                    <td>{{ Member.strDateOfBirth }}</td>
+                     <input type="checkbox" class="hidden" name="strDateofBirths" id="plan{{ Member.strDateOfBirth }}" value="{{ Member.strDateOfBirth }}" checked="checked">
+
+                </tr>
+                {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+
+    <div class="box box-comments">
+        <div class="box box-title">
+            <h4>Select Family Cover</h4>
+        </div>
+        <table id="AvailableCoversTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Family Plan</th>
+                    <th>Plan A</th>
+                    <th>Plan B</th>
+                    <th>Plan C</th>
+                    <th>Plan D</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Policy Holder (18 - 60)</td>
+                <td>R 5000.00</td>
+                <td>R 7000.00</td>
+                <td>R 10000.00</td>
+                <td>R 12000.00</td>
+
+            </tr>
+            <tr>
+                <td>Spouse (18 - 60)</td>
+                <td>R 5000.00</td>
+                <td>R 7000.00</td>
+                <td>R 10000.00</td>
+                <td>R 12000.00</td>
+            </tr>
+
+            <tr>
+                <td>Children (0 - 5)</td>
+                <td>R 2000.00</td>
+                <td>R 2800.00</td>
+                <td>R 4000.00</td>
+                <td>R 5000.00</td>
+            </tr>
+            <tr>
+                <td>Children (6 - 12)</td>
+                <td>R 2500.00</td>
+                <td>R 3000.00</td>
+                <td>R 4500.00</td>
+                <td>R 5500.00</td>
+            </tr>
+            <tr>
+                <td>Children (13 - 21/25)</td>
+                <td>R 3000.00</td>
+                <td>R 3500.00</td>
+                <td>R 5000.00</td>
+                <td>R 6500.00</td>
+            </tr>
+            <tr>
+                <td>Still Born</td>
+                <td>R 1000.00</td>
+                <td>R 1000.00</td>
+                <td>R 1200.00</td>
+                <td>R 1500.00</td>
+            </tr>
+            <tr>
+                <td>Premiums</td>
+                <td>R50.00</td>
+                <td>R60.00</td>
+                <td>R85.00</td>
+                <td>R95.00</td>
+            </tr>
+            <tr>
+                <td>Choose Cover</td>
+                <td><input type="radio" name="FamilyPlanChoice" id="plana" value="A"></td>
+                <td><input type="radio" name="FamilyPlanChoice" id="planb" value="B"></td>
+                <td><input type="radio" name="FamilyPlanChoice" id="planc" value="C"></td>
+                <td><input type="radio" name="FamilyPlanChoice" id="pland" value="D"></td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Select Extended Cover</h4>
+        </div>
+        <div class="box box-comment">
+            <table id="SingleCoverTable" class="table table-bordered table-stripped">
+                <thead>
+                    <tr>
+                        <th>Single Plans</th>
+                        <th>Plan A  5000.00</th>
+                        <th>Plan B  7000.00</th>
+                        <th>Plan C  10000.00</th>
+                        <th>Plan D  12000.00</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 1  - 12</td>
+                        <td> R 25.00</td>
+                        <td> R 30.00</td>
+                        <td> R 40.00</td>
+                        <td> R 50.00</td>
+                    </tr>
+
+                    <tr>
+                        <td> 13 - 25 </td>
+                        <td> R 25.00 </td>
+                        <td> R 30.00 </td>
+                        <td> R 45.00 </td>
+                        <td> R 55.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 26 - 35 </td>
+                        <td> R 33.00 </td>
+                        <td> R 35.00 </td>
+                        <td> R 50.00 </td>
+                        <td> R 60.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 36 - 65 </td>
+                        <td> R 35.00 </td>
+                        <td> R 40.00 </td>
+                        <td> R 55.00 </td>
+                        <td> R 65.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 66 - 85 </td>
+                        <td> R 65.00 </td>
+                        <td> R 70.00 </td>
+                        <td> R 75.00 </td>
+                        <td> R 90.00 </td>
+                    </tr>
+                    <tr>
+                        <td>86 and Above</td>
+                        <td> R 70.00 </td>
+                        <td> R 80.00 </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Plan Choice</td>
+                        <td><input type="radio" name="ExtendedPlanChoice" id="ExtendedPlanA" value="A"></td>
+                        <td><input type="radio" name="ExtendedPlanChoice" id="ExtendedPlanB" value="B"></td>
+                        <td><input type="radio" name="ExtendedPlanChoice" id="ExtendedPlanC" value="C"></td>
+                        <td><input type="radio" name="ExtendedPlanChoice" id="ExtendedPlanD" value="D"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Premiums Calculations</h4>
+        </div>
+        <div class="box box-comment">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Total Premiums</label>
+            <div class="col-sm-9">
+                <button type="button" class="btn btn-success btn-block" id="CalculateButt">Calculate</button>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="strTotalPremiums" name="vstrTotalPremiums" placeholder="Total Premiums">
+            </div>
+        </div>
+        </div>
+    </div>
+     <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Payment Day</h4>
+        </div>
+        <div class="box box-comment">
+
+                <label class="col-sm-4 control label">Payment Day</label>
+                <div class="col-sm-9">
+                    <select class="form-control select2" style="width: 100%;" id="strPaymentDay">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                    </select>
+
+                </div>
+
+        </div>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Signature</h4>
+        </div>
+        <div class="box box-comment">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Client Signature</label>
+            <div class="col-sm-9">
+                <textarea id="strClientSignature" name="vstrClientSignature" cols="64" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Employee Signature</label>
+            <div class="col-sm-9">
+                <textarea id="strEmployeeSignature" name="vstrEmployeeSignature" cols="64" rows="2"></textarea>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Office Use</h4>
+        </div>
+        <div class="box box-comment">
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button type="button" class="btn-block btn-info btn-block" id="SaveExtendedButt"><i class="fa fa-save"></i> Save</button>
+                    <button type="button" class="btn-block btn-info btn-block"><i class="fa fa-print"></i> Print</button>
+                    <button type="button" class="btn-block btn-info btn-block"><i class="fa fa-cloud"></i> Upload</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <div class="box box-comments">
+        <div class="box box-comment">
+            <div id="ActionButtonResults">
+            <small>Action Results...</small>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  $(function () {
+
+    $('#AvailableCoversTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+
+<script>
+  $(function () {
+
+    $('#ChildrensDetailsTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+
+<script>
+  $(function () {
+
+    $('#SpouseDetailsTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+
+
+
+<script>
+  $(function () {
+
+    $('#PrincipalMemberTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+<script>
+  $(function () {
+
+    $('#SingleCoverTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>

@@ -1,0 +1,14 @@
+
+
+handlers:
+- url: /leads/capture
+  login: required
+  script: leads.app
+
+- url: /leads/sublead/.*
+  login: required
+  script: leads.app
+
+- url: /leads/response
+  login: required
+  script: leads.app

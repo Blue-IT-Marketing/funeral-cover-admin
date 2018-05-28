@@ -1,0 +1,122 @@
+application: pro-finance
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+includes:
+- dynamic.yaml
+- leads.yaml
+- covers.yaml
+- admin.yaml
+- messaging.yaml
+- navigation.yaml
+- funeralforms.yaml
+- branches.yaml
+- employees.yaml # Dont put yaml files below this one
+
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /static
+  static_dir: static
+
+- url: /services
+  script: main.app
+
+- url: /services/funeral-cover
+  script: main.app
+
+- url: /services/funeral-services
+  script: main.app
+
+- url: /employees
+  script: main.app
+
+- url: /employees/leads
+  login: required
+  script: main.app
+
+- url: /employees/funeral-cover
+  login: required
+  script: main.app
+
+- url: /employees/funeral-service
+  login: required
+  script: main.app
+
+- url: /employees/admin
+  login: required
+  script: main.app
+
+- url: /clients
+  script: main.app
+
+- url: /clients/funeral-cover
+  login: required
+  script: main.app
+
+- url: /clients/funeral-service
+  login: required
+  script: main.app
+
+- url: /clients/claims
+  login: required
+  script: main.app
+
+- url: /clients/referrals
+  script: main.app
+
+- url: /chats
+  script: main.app
+
+- url: /chats/staff
+  login: required
+  script: main.app
+
+- url: /chats/users
+  login: required
+  script: main.app
+
+
+
+- url: /about
+  script: main.app
+- url: /contact
+  script: main.app
+
+- url: /contact/submit
+  script: Contact.app
+- url: /terms
+  script: main.app
+- url: /
+  script: main.app
+
+- url: /tasks
+  login: required
+  script: main.app
+
+- url: /notifications
+  login: required
+  script: main.app
+
+- url: /inbox
+  login: required
+  script: main.app
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name: jinja2
+  version: "latest"
+
+inbound_services:
+- mail
+- warmup

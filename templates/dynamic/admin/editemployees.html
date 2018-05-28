@@ -1,0 +1,66 @@
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../../static/plugins/datatables/dataTables.bootstrap.css">
+
+
+<div class="box">
+        <div class="box box-body">
+
+            <div class="box-body chat" id="chat-box">
+
+              <table id="EmployeeDetails" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Employee Code</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Branch Code</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                    <tr>
+                      <!-- TODO- Call an Ajax Function to fill up the form in employeeDetails then return the form and
+                         TODO- Insert it into the DynamicLoading Div Tag in the Modal then show the modal -->
+                      <td><a href="/admin/employees/{{ employee.strEmployeeCode }}">{{ employee.strEmployeeCode }}</a></td>
+                      <td>{{ employee.strFullNames }}</td>
+                      <td>{{ employee.strSurname}}</td>
+                      <td>{{ employee.strIDNumber }}</td>
+                      <td><a href="/admin/branch/{{ employee.strBranchCode }}">{{ employee.strBranchCode }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Employee Code</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Branch Code</th>
+                </tr>
+                </tfoot>
+
+              </table>
+
+            </div>
+
+
+        </div>
+
+</div>
+<!-- DataTables -->
+<script src="../../../static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../../static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#EmployeeDetails').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>

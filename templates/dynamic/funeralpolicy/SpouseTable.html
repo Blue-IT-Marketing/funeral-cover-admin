@@ -1,0 +1,39 @@
+
+       <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in SpouseList %}
+                    <tr>
+                      <!-- TODO- Call an Ajax Function to fill up the form in employeeDetails then return the form and
+                         TODO- Insert it into the DynamicLoading Div Tag in the Modal then show the modal -->
+                      <td><a href="/funeral-cover/policies/{{ member.strPolicyNum }}">{{ member.strPolicyNum }}</a></td>
+                      <td>{{ member.strFullNames }}</td>
+                      <td>{{ member.strSurname }}</td>
+                      <td>{{ member.strIDNumber }}</td>
+                      <td>{{ member.strDateOfBirth }}</td>
+                      <td><a href="/funeral-cover/policies/{{ member.strPolicyNum }}">{{ member.strPolicyNum }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </tfoot>
+
+       </table>

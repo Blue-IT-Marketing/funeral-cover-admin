@@ -1,0 +1,214 @@
+
+
+<div class="box">
+        <div class="box box-body">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Employee Code</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Branch Code</th>
+
+
+                </tr>
+                {% for employee in employees %}
+                    <tr>
+                      <td><a href="/admin/employees/{{ employee.strEmployeeCode }}">{{ employee.strEmployeeCode }}</a></td>
+                      <td>{{ employee.strFullNames }}</td>
+                      <td>{{ employee.strSurname}}</td>
+                      <td>{{ employee.strIDNumber }}</td>
+                      <td><a href="/admin/branch/{{ employee.strBranchCode }}">{{ employee.strBranchCode }}</a></td>
+
+                    </tr>
+                {% endfor %}
+
+              </table>
+            </div>
+                <!-- TODO Use a JQuery Drop Down  to load Different Sections of the employee form and then finally save the form at once -->
+                <form class="form-horizontal" name="EmployeeDetails" action="/dynamic/admin/editemployees.html" method="post">
+
+                   <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#EmployeesDetails" data-toggle="tab">Employee Details</a></li>
+                          <li><a href="#PersonalDetails" data-toggle="tab">Personal Details</a></li>
+                          <li><a href="#PhysicalAddress" data-toggle="tab">Physical Address</a></li>
+                          <li><a href="#PostalAddress" data-toggle="tab">Postal Address</a></li>
+                          <li><a href="#FormActions" data-toggle="tab">Form Actions</a></li>
+
+                        </ul>
+                        <div class="tab-content">
+                          <div class="box box-body active tab-pane" id="EmployeesDetails">
+                                <div class="form-group">
+                                  <label for="strBranchCode" class="col-sm-3 control-label pull-left" title="Select Branch By Code">Branch Code</label>
+                                        <div class="col-sm-6">
+                                            <select id="strBranchCode" name="vstrBranchCode">
+                                                {% for branch in branches %}
+                                                    <option>{{ branch.strCompanyBranchCode }}</option>
+                                                {% endfor %}
+                                            </select>
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="strEmployeeCode" class="col-sm-3 control-label pull-left" title="Employee Code">Employee Code</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strEmployeeCode" name="vstrEmployeeCode" placeholder="Employee Code">
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="strContractType" class="col-sm-3 control-label pull-left" title="Employee Contract">Employment Contract</label>
+                                        <div class="col-sm-6">
+                                            <select id="strContractType" name="vstrContractType">
+                                                <option>Permanent</option>
+                                                <option>Temporary</option>
+                                                <option>Affiliate</option>
+
+                                            </select>
+
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="strBasicSalary" class="col-sm-3 control-label pull-left" title="Employee Basic Salary">Basic Salary</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strBasicSalary" name="vstrBasicSalary" placeholder="Basic Salary">
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="strDateOfEmployment" class="col-sm-3 control-label pull-left" title="Date of Employment">Date of Employment</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strDateOfEmployment" name="vstrDateOfEmployment" placeholder="dd/mm/yyyy">
+                                         </div>
+                                </div>
+                        </div>
+                          <div class="box box-body tab-pane" id="PersonalDetails">
+
+                                <div class="form-group">
+                                  <label for="strTitle" class="col-sm-3 control-label pull-left" title="Title">Title</label>
+                                        <div class="col-sm-6">
+                                            <select id="strTitle" name="vstrTitle">
+                                                <option>MR</option>
+                                                <option>Mrs</option>
+                                                <option>Miss</option>
+                                            </select>
+                                         </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="strFullnames" class="col-sm-3 control-label pull-left" title="Fullnames of Emplyees">Fullnames</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strFullnames" name="vstrFullnames" placeholder="Full Names">
+                                         </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="strSurname" class="col-sm-3 control-label pull-left" title="Employee Surname">Surname</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strSurname" name="vstrSurname" placeholder="Surname">
+                                         </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="strIDNumber" class="col-sm-3 control-label pull-left" title="Employee ID Number">ID Number</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strIDNumber" name="vstrIDNumber" placeholder="ID Number">
+                                         </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                  <label for="strDateOfBirth" class="col-sm-3 control-label pull-left" title="Employee Date of Birth">Date of Birth</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strDateOfBirth" name="vstrDateOfBirth" placeholder="dd-mm-yyyy">
+                                         </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="strNationality" class="col-sm-3 control-label pull-left" title="Employee Nationality">Nationality</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="strNationality" name="vstrNationality" placeholder="Nationality">
+                                         </div>
+                                </div>
+                          </div>
+                          <div class="box box-body tab-pane" id="PhysicalAddress">
+                                <div class="form-group">
+                                     <label for="strPhysicalAddressL1" class="col-sm-3 control-label pull-left" title="Physical Address Line1">Physical Address Line 1</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPhysicalAddressL1" name="vstrPhysicalAddressL1" placeholder="Physical Address Line 1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                     <label for="strPhysicalAddressL2" class="col-sm-3 control-label pull-left" title="Physical Address Line1">Physical Address Line 2</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPhysicalAddressL2" name="vstrPhysicalAddressL2" placeholder="Physical Address Line 2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strCityTown" class="col-sm-3 control-label pull-left" title="City Town">City/Town</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strCityTown" name="vstrCityTown" placeholder="City/Town">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strProvince" class="col-sm-3 control-label pull-left" title="Province">Province</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strProvince" name="vstrProvince" placeholder="Province">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strPhysicalPostalCode" class="col-sm-3 control-label pull-left" title="Postal Code">Postal Code</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPhysicalPostalCode" name="vstrPhysicalPostalCode" placeholder="Postal Code">
+                                    </div>
+                                </div>
+
+                          </div>
+                          <div class="box box-body tab-pane" id="PostalAddress">
+                                <div class="form-group">
+                                     <label for="strPostalAddressL1" class="col-sm-3 control-label pull-left" title="Postal Address Line1">Postal Address Line 1</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPostalAddressL1" name="vstrPostalAddressL1" placeholder="Postal Address Line 1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                     <label for="strPostalAddressL2" class="col-sm-3 control-label pull-left" title="Physical Address Line2">Postal Address Line 2</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPostalAddressL2" name="vstrPostalAddressL2" placeholder="Postal Address Line 2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strPostalCityTown" class="col-sm-3 control-label pull-left" title="Postal City Town">City/Town</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPostalCityTown" name="vstrPostalCityTown" placeholder="City/Town">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strPostalProvince" class="col-sm-3 control-label pull-left" title="Postal Province">Province</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPostalProvince" name="vstrPostalProvince" placeholder="Province">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="strPostalCode" class="col-sm-3 control-label pull-left" title="Postal Code">Postal Code</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="strPostalCode" name="vstrPostalCode" placeholder="Postal Code">
+                                    </div>
+                                </div>
+
+                          </div>
+                          <div class="box box-body tab-pane" id="FormActions">
+                                <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-6">
+                                  <button type="submit" id="SaveButt" name="SaveButt"  class="btn btn-success">Save</button>
+                                </div>
+                                </div>
+
+                          </div>
+
+                       </div>
+                     </div>
+               </form>
+
+        </div>
+
+</div>

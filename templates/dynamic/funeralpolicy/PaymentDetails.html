@@ -1,0 +1,127 @@
+ <div class="box">
+  <div class="box box-body">
+    <div class="box box-header">
+       <h4>Payment Details</h4>
+        <small>Payroll Deductions</small>
+    </div>
+      <small>I hereby authorise the Employer to deduct from my salary each month the total amount due for the cover
+       i have chosen and to pay this amount to Pro Finance. In the event of this deduction not being succesful, the policy
+      will end, subject to the grace period as described in the Terms and Conditions. No cash payments are accepted
+      for arrear or any other premiums. i understand that this signed application form must be received by Pro Finance within
+      12 Working days prior to the deduction date; if not, the premium will only be deducted and cover will only start
+       in the following calendar month.</small>
+
+<form class="form-horizontal" name="PaymentDetails" action="funeralcover/paymentdetails/payroll" method="post">
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Date Submitted/Signed">Date</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrDateSigned" id="strDateSigned" placeholder="dd/mm/yyyy">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="A Manual Authorisation was Signed">Signed</label>
+      <div class="col-sm-8">
+          <input type="checkbox" class="form-control" name="vstrSignatureSubmitted" id="strSignatureSubmitted">
+      </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <button type="submit" id="SaveButt" name="SaveButt"  class="btn btn-success">Save</button>
+    </div>
+  </div>
+
+</form>
+
+
+
+  </div>
+</div>
+
+
+  <div class="box">
+  <div class="box box-body">
+    <div class="box box-header">
+       <h4>Payment Details</h4>
+        <small>Debit Order Deductions</small>
+    </div>
+
+
+<form class="form-horizontal" name="PaymentDetails" action="funeralcover/paymentdetails/debitorder" method="post">
+      <small>I hereby authorise Pro Finance to start a debit order withdrawal from my account on the specified date and on the day
+      of each month thereafter, with a possible percentage increase each year, for the total amount of the cover i have choosen.
+      i understand that the debit order will be run on the date i have choosen; if for whatever reason it is not succesful, the policy
+       will end, subject to the grace period as described in the Terms and Conditions. No cash payments are accepted for arrear or
+      any other premiums. i understand that this signed application form must be received by Pro Finance within 12 working days prior to the
+      chosen deduction date; if not, the total amount due will only be deducted and cover will only start in the following calendar
+      month.</small>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Name of Bank">Name Of Bank</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrNameOfBank" id="strNameOfBank" placeholder="Name of Bank">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Branch Code">Branch Code</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrBranchCOde" id="strBranchCode" placeholder="Branch Code">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Select Type of Account">Account Type</label>
+      <div class="col-sm-8">
+          <select class="form-control select2" style="width: 100%;" id="strParents5075" name="vstrParents5075">
+              <option>Cheque</option>
+              <option>Savings</option>
+              <option>Transmission</option>
+          </select>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Name of Account Holder">Account Holder</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrAccountHolder" id="strAccountHolder" placeholder="Full Names of Account Holder">
+      </div>
+  </div>
+
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Account Number">Account Number</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrAccountNumber" id="strAccountNumber" placeholder="Account Number">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Date Submitted/Signed">Date</label>
+      <div class="col-sm-8">
+          <input type="text" class="form-control" name="vstrDebitDateSigned" id="strDebitDateSigned" placeholder="dd/mm/yyyy">
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-sm-4 control-label pull-left" title="Client Signed and Submitted the Manual Form">Signed</label>
+      <div class="col-sm-8">
+          <input type="checkbox" class="form-control" name="vstrClientSignedDebitAuthorisation" id="strClientSignedDebitAuthorisation">
+      </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <button type="submit" id="SaveButtDebit" name="SaveButt"  class="btn btn-success">Save</button>
+    </div>
+  </div>
+
+</form>
+
+
+
+  </div>
+</div>

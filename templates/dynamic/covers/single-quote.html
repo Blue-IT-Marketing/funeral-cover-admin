@@ -1,0 +1,371 @@
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#CalculateButt').click(function(){
+
+            var dob = document.getElementById('strDateOfBirth').value;
+            var age = getAge(dob);
+            var premium = 0;
+            var PlanChoiceList = document.getElementsByName('PlanChoice');
+            var PlanChoice;
+            for(var i = 0; i < PlanChoiceList.length; i++){
+                if(PlanChoiceList[i].checked){
+                    PlanChoice = PlanChoiceList[i].value;
+                }
+            }
+
+            if (PlanChoice == "A"){
+                if ((age >= 1) && (age <= 12)){
+                    premium = 25
+                }
+                if ((age >= 13) && (age <= 25)){
+                    premium = 25
+                }
+                if ((age >= 26) && (age <= 35)){
+                    premium = 33
+                }
+                if ((age >= 36) && (age <= 65)){
+                    premium = 35
+                }
+                if ((age >= 66) && (age <= 85)){
+                    premium = 65
+                }
+                if ((age >= 86)){
+                    premium = 70
+                }
+            }
+
+            if (PlanChoice == "B"){
+                if ((age >= 1) && (age <= 12)){
+                    premium = 30
+                }
+                if ((age >= 13) && (age <= 25)){
+                    premium = 30
+                }
+                if ((age >= 26) && (age <= 35)){
+                    premium = 35
+                }
+                if ((age >= 36) && (age <= 65)){
+                    premium = 40
+                }
+                if ((age >= 66) && (age <= 85)){
+                    premium = 70
+                }
+                if ((age >= 86)){
+                    premium = 80
+                }
+            }
+
+            if (PlanChoice == "C"){
+                if ((age >= 1) && (age <= 12)){
+                    premium = 40
+                }
+                if ((age >= 13) && (age <= 25)){
+                    premium = 45
+                }
+                if ((age >= 26) && (age <= 35)){
+                    premium = 50
+                }
+                if ((age >= 36) && (age <= 65)){
+                    premium = 55
+                }
+                if ((age >= 66) && (age <= 85)){
+                    premium = 75
+                }
+                if ((age >= 86)){
+                    premium = "Over Age"
+                }
+            }
+
+            if (PlanChoice == "D"){
+                if ((age >= 1) && (age <= 12)){
+                    premium = 50
+                }
+                if ((age >= 13) && (age <= 25)){
+                    premium = 55
+                }
+                if ((age >= 26) && (age <= 35)){
+                    premium = 60
+                }
+                if ((age >= 36) && (age <= 65)){
+                    premium = 65
+                }
+                if ((age >= 66) && (age <= 85)){
+                    premium = 90
+                }
+                if ((age >= 86)){
+                    premium = "Over Age"
+                }
+            }
+            document.getElementById('strTotalPremiums').value = premium;
+
+          });
+      });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#SaveSingleButt').click(function () {
+        var varstrPolicyNumber = document.getElementById('vstrPolicyNum').value;
+        var varvstrPaymentDay = document.getElementById('strPaymentDay').value;
+        var varvstrTotalPremiums = document.getElementById('strTotalPremiums').value;
+        var PlanChoiceList = document.getElementsByName('PlanChoice');
+        var PlanChoice;
+        for (var i = 0; i < PlanChoiceList.length; i++) {
+            if (PlanChoiceList[i].checked) {
+                PlanChoice = PlanChoiceList[i].value;
+            }
+        }
+        var vstrPaymentDay = document.getElementById('strPaymentDay').value;
+        var vstrClientSignature = document.getElementById('strClientSignature').value;
+        var vstrEmployeeSignature = document.getElementById('strEmployeeSignature').value;
+        var vstrTotalPremium = document.getElementById('strTotalPremiums').value;
+
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber+ '&vstrPaymentDay=' + varvstrPaymentDay +
+                    '&vstrTotalPremiums=' + varvstrTotalPremiums + '&vstrSinglePlanChoice=' + PlanChoice + '&vstrPaymentDay=' + vstrPaymentDay +
+                    '&vstrClientSignature=' + vstrClientSignature + '&vstrEmployeeSignature='+ vstrEmployeeSignature +
+                    '&vstrTotalPremium=' + vstrTotalPremium;
+              $.ajax({
+                    type: "get",
+                    url: "/funeral/create/single",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ActionButtonResults').html(html)
+                  }
+              });
+    });
+});
+</script>
+
+
+
+
+
+<h2>Single Cover Quote</h2>
+<div class="box box-body">
+    <div class="box box-title">
+        <h3>Policy Number : {{ strPolicyNum }}</h3>
+        <input type="hidden" id="vstrPolicyNum" value="{{ strPolicyNum }}">
+    </div>
+
+    <div class="box box-info">
+        <div class="box box-title">
+            <h4>Principal Member</h4>
+        </div>
+        <table id="PrincipalMemberDetailsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                  <th>ID Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>DOB</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for Principal in PrincipalMemberList %}
+                <tr>
+                  <td>{{ Principal.strIDNumber }}</td>
+                  <td>{{ Principal.strFullNames }}</td>
+                  <td>{{ Principal.strSurname }}</td>
+                  <td>{{ Principal.strDateOfBirth }}</td>
+                    <input type="hidden" id="strDateOfBirth" name="vstrDateOfBirth" value="{{ Principal.strDateOfBirth }}">
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Quote</h4>
+        </div>
+        <div class="box box-comment">
+            <table id="SingleCoverTable" class="table table-bordered table-stripped">
+                <thead>
+                    <tr>
+                        <th>Single Plans</th>
+                        <th>Plan A  5000.00</th>
+                        <th>Plan B  7000.00</th>
+                        <th>Plan C  10000.00</th>
+                        <th>Plan D  12000.00</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 1  - 12</td>
+                        <td> R 25.00</td>
+                        <td> R 30.00</td>
+                        <td> R 40.00</td>
+                        <td> R 50.00</td>
+                    </tr>
+
+                    <tr>
+                        <td> 13 - 25 </td>
+                        <td> R 25.00 </td>
+                        <td> R 30.00 </td>
+                        <td> R 45.00 </td>
+                        <td> R 55.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 26 - 35 </td>
+                        <td> R 33.00 </td>
+                        <td> R 35.00 </td>
+                        <td> R 50.00 </td>
+                        <td> R 60.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 36 - 65 </td>
+                        <td> R 35.00 </td>
+                        <td> R 40.00 </td>
+                        <td> R 55.00 </td>
+                        <td> R 65.00 </td>
+                    </tr>
+                    <tr>
+                        <td> 66 - 85 </td>
+                        <td> R 65.00 </td>
+                        <td> R 70.00 </td>
+                        <td> R 75.00 </td>
+                        <td> R 90.00 </td>
+                    </tr>
+                    <tr>
+                        <td>86 and Above</td>
+                        <td> R 70.00 </td>
+                        <td> R 80.00 </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Plan Choice</td>
+                        <td><input type="radio" name="PlanChoice" id="ChoiceA" value="A"></td>
+                        <td><input type="radio" name="PlanChoice" id="ChoiceB" value="B"></td>
+                        <td><input type="radio" name="PlanChoice" id="ChoiceC" value="C"></td>
+                        <td><input type="radio" name="PlanChoice" id="ChoiceD" value="D"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Premium Calculations</h4>
+        </div>
+        <div class="box box-comment">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Total Premiums</label>
+            <div class="col-sm-9">
+                <button type="button" class="btn btn-success btn-block" id="CalculateButt">Calculate</button>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="strTotalPremiums" name="vstrTotalPremiums" placeholder="Total Premiums">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Payment Day</h4>
+        </div>
+        <div class="box box-comment">
+
+                <label class="col-sm-4 control label">Payment Day</label>
+                <div class="col-sm-9">
+                    <select class="form-control select2" style="width: 100%;" id="strPaymentDay">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                    </select>
+
+                </div>
+
+        </div>
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Signature</h4>
+        </div>
+        <div class="box box-comment">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Client Signature</label>
+            <div class="col-sm-9">
+                <textarea id="strClientSignature" name="vstrClientSignature" cols="64" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Employee Signature</label>
+            <div class="col-sm-9">
+                <textarea id="strEmployeeSignature" name="vstrEmployeeSignature" cols="64" rows="2"></textarea>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Office Use</h4>
+        </div>
+        <div class="box box-comment">
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button type="button" class="btn-block btn-info btn-block" id="SaveSingleButt"><i class="fa fa-save"></i> Save</button>
+                    <button type="button" class="btn-block btn-info btn-block"><i class="fa fa-print"></i> Print</button>
+                    <button type="button" class="btn-block btn-info btn-block"><i class="fa fa-cloud"></i> Upload</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <div id="ActionButtonResults">
+            <small>Action Results...</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  $(function () {
+
+    $('#PrincipalMemberDetailsTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>
+
+<script>
+  $(function () {
+
+    $('#SingleCoverTable').DataTable({
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": true
+    });
+  });
+</script>

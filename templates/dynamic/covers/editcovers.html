@@ -1,0 +1,159 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#SaveCoverButt').click(function(){
+
+            var varstrCoverType = document.getElementById('strCoverType').value;
+            var varstrCoverCode = document.getElementById('strCoverCode').value;
+            var varstrCoverName = document.getElementById('strCoverName').value;
+            var varstrCoverFSP = document.getElementById('strCoverFSP').value;
+
+            var dataString = '&vstrCoverType=' + varstrCoverType + '&vstrCoverCode=' + varstrCoverCode + '&vstrCoverName=' + varstrCoverName + '&vstrCoverFSP=' + varstrCoverFSP;
+              $.ajax({
+                    type: "post",
+                    url: "/dynamic/admin/editcovers",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#CoverInfoFormContent').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#RemoveCoverModalButt').click(function(){
+
+            var varstrCoverCode = document.getElementById('strRemoveCoverCode').value;
+
+            var dataString = '&vstrCoverCode=' + varstrCoverCode;
+              $.ajax({
+                    type: "post",
+                    url: "/dynamic/admin/editcovers/remove",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#RemoveStatusUpdate').html(html)
+                  }
+              });
+
+          });
+      });
+</script>
+
+
+<div class="box">
+        <div class="box box-body">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Cover Code</th>
+                  <th>Cover Name</th>
+                  <th>Cover Type</th>
+                  <th>Cover FSP</th>
+                </tr>
+                {% for cover in covers %}
+                    <tr>
+                      <td><a href="/dynamic/admin/covers/{{ cover.strCoverCode }}">{{ cover.strCoverCode }}</a></td>
+                      <td>{{ cover.strCoverName }}</td>
+                      <td>{{ cover.strCoverType }}</td>
+                      <td>{{ cover.strFSPNumber }}</td>
+                    </tr>
+                {% endfor %}
+              </table>
+            </div>
+
+
+        <div class="box box-header">
+           <h4>Edit Covers</h4>
+        </div>
+            <form class="form-horizontal" name="EditCover" action="" method="post">
+
+
+        <div class="form-group">
+          <label for="strCoverType" class="col-sm-3 control-label pull-left" title="Branch Address">Cover Type</label>
+                <div class="col-sm-6">
+                    <select class="form-control select2" style="width: 100%;" id="strCoverType" name="vstrCoverType">
+                        <option value="Family">Family</option>
+                        <option value="Single">Single</option>
+                        <option value="Extended">Extended</option>
+                        <option value="Funeral Service">Funeral Service</option>
+                    </select>
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strCoverCode" class="col-sm-3 control-label pull-left" title="Branch Name">Cover Code</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strCoverCode" name="vstrCoverCode" placeholder="Cover Code">
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strCoverName" class="col-sm-3 control-label pull-left" title="Branch Code">Cover Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strCoverName" name="vstrCoverName" placeholder="Cover Name">
+                 </div>
+        </div>
+
+        <div class="form-group">
+            <label for="strCoverFSP" class="col-sm-3 control-label pull-left" title="Cover FSP">FSP Number</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="strCoverFSP" name="vstrCoverFSP" placeholder="Cover FSP">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="button" id="SaveCoverButt" name="SaveButt"  class="btn btn-success">Save</button>
+            <button type="button" id="RemoveButt" name="SaveButt"  class="btn btn-warning" data-toggle="modal" data-target="#RemoveCoverModal">Remove</button>
+        </div>
+        </div>
+
+        </form>
+
+        </div>
+</div>
+
+{% if ErrorDiag %}
+<div id="StatusMessage">
+    <div class="box box-warning">
+        <label class="label label-warning">{{ ErrorDiag }}</label>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="modal modal-warning" id="RemoveCoverModal" tabindex="-1" role="dialog" aria-labelledby="RemoveCoverLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="RemoveCoverLabel">Remove Cover From System</h4>
+            <small>Remove Cover From System By Cover Code</small>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input type="text" name="vstrRemoveCoverCode" id="strRemoveCoverCode" class="form-control" placeholder="Cover Code">
+            <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+          </div>
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="RemoveCoverModalButt">Remove</button>
+          </div>
+
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div id="RemoveStatusUpdate">
+ <small class="label label-info">...Remove status will appear here</small>
+</div>

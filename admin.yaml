@@ -1,0 +1,77 @@
+handlers:
+
+- url: /admin
+  login: admin
+  script: main.app
+
+- url: /admin/empexist
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/delete
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/suspendonpay
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/suspend
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/24hourlock
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/locksystem
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/24hcoverlocks
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/12hcoverlocks
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/indefiniteFuneralCoverLock
+  login: admin
+  script: admin.app
+
+- url: /admin/employees/removeAllFuneralFormLocks
+  login: admin
+  script: admin.app
+
+- url: /admin/registration/request
+  login: required
+  script: admin.app
+
+- url: /admin/contactform
+  login: admin
+  script: admin.app
+
+- url: /admin/contact/.*
+  login: admin
+  script: admin.app
+
+- url: /admin/userrights/employees/.*
+  login: admin
+  script: admin.app
+
+- url: /dynamic/admin/branch/employees/.*
+  login: admin
+  script: admin.app
+
+- url: /admin/userpersonals/employees/.*
+  login: admin
+  script: admin.app
+
+- url: /dynamic/admin/userrights
+  login: admin
+  script: admin.app
+
+- url: /admin/financial/branch
+  login: admin
+  script: admin.app

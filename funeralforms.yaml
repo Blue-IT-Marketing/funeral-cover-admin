@@ -1,0 +1,78 @@
+
+
+handlers:
+
+- url: /funeralforms/policyholder
+  login: required
+  script: funeralforms.app
+
+- url: /funeral/create
+  login: required
+  script: funeralforms.app
+
+- url: /funeral/create/family
+  login: required
+  script: funeralforms.app
+
+- url : /funeral/create/single
+  login: required
+  script: funeralforms.app
+
+- url : /funeral/create/extended
+  login: required
+  script: funeralforms.app
+
+- url: /funeral/create/paymentdetails
+  login: required
+  script: funeralforms.app
+
+- url: /funeral-cover/remove/child
+  login: required
+  script: funeralforms.app
+
+- url : /funeral-cover/remove/spouse
+  login: required
+  script: funeralforms.app
+
+- url : /funeral-cover/remove/extended
+  login: required
+  script: funeralforms.app
+
+- url: /funeral-cover/remove/beneficiary
+  login: required
+  script: funeralforms.app
+
+- url: /funeral/paymentdetails/payroll
+  login: required
+  script: funeralforms.app
+- url: /funeral/paymentdetails/dynupload
+  login: required
+  script: funeralforms.app
+
+- url: /funeral-cover/terms
+  login: required
+  script: funeralforms.app
+
+- url: /funeral-cover/client/processpayment
+  login: required
+  script: funeralforms.app
+
+- url: /funeral-cover/editpolicy
+  login: admin
+  script: funeralforms.app
+
+- url: /funeral-cover/deletepolicy
+  login: admin
+  script: funeralforms.app
+
+- url: /funeral-cover/calpremium
+  login: admin
+  script: funeralforms.app
+
+- url: /funeral-cover/claim
+  login: admin
+  script: funeralforms.app
+
+- url: /funeral-cover/client/.*
+  login: required
+  script: funeralforms.app

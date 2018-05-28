@@ -1,0 +1,54 @@
+handlers:
+- url: /dynamic/funeralpolicy/PolicyHolder.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Spouse.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Children.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Extended.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Beneficiary.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Single.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/Family.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/ExtendedCover.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/SeniorMemberBenefits.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/AmountPayableSummary.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/funeralpolicy/PaymentDetails.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/admin/editbranch.html
+  login: required
+  script: dynamic.app
+
+- url: /dynamic/admin/editemployees.html
+  login: required
+  script: dynamic.app
+
+

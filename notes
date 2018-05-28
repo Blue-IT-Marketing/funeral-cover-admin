@@ -1,0 +1,54 @@
+
+
+
+
+Notes
+
+
+Status
+
+Active
+Unpaid
+Lapse
+
+
+
+
+Design
+
+Funeral Class
+Funeral Service Class
+
+Employee Class
+
+
+
+THOHOYANDOU---------TH001
+KHUBVI----------KH002
+TSHILAMBA-----TSH003
+DZIMAULI-----DZ004
+BIABA------BI005
+NKOWANKOWA----NK006
+TZANEEN----TZ007
+
+
+
+
+
+Procedure to register clients
+
+the client logs into the system using their google account
+then goes to associate policy screen
+they are asked for a policy number
+then their number phone for security purposes
+
+once supplied correctly a notification is sent to the admin through the notifications console
+
+the admin must then call the client and verify their policy by asking further security questions
+
+then after allow access to the policy from the client side...
+
+the client will be able to download and print their statements
+able touse the referral system to promote midey funeral and earn an income
+
+

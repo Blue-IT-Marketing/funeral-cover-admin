@@ -1,0 +1,117 @@
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../../../../static/dist/img/propic.png" class="img-circle" alt="Pro Finance">
+        </div>
+        <div class="pull-left info">
+          {% if vstrUsername %}
+            <p>{{ vstrUsername }}</p>
+            <a href="{{ vstrLogoutURL }}"><i class="fa fa-circle text-success"></i> Sign Out</a>
+          {% else %}
+            <a href="{{ vstrLoginURL }}"><i class="fa fa-circle text-success"></i> Sign In</a>
+          {% endif %}
+
+
+        </div>
+      </div>
+
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Home</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/"><i class="fa fa-circle-o"></i> Home</a></li>
+            <li><a href="/about"><i class="fa fa-circle-o"></i> About</a></li>
+            <li><a href="/contact"><i class="fa fa-circle-o"></i> Contact</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="/services">
+            <i class="fa fa-laptop"></i>
+            <span>Services</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/services"><i class="fa fa-circle-o"></i> Services</a></li>
+            <li><a href="/services/funeral-cover"><i class="fa fa-circle-o"></i> Funeral Cover</a></li>
+            <li><a href="/services/funeral-services"><i class="fa fa-circle-o"></i> Funeral Services</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="/employees">
+            <i class="fa fa-files-o"></i>
+            <span>Employees</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/employees"><i class="fa fa-circle-o"></i> Employees</a></li>
+            <li  title="Lead Capturing, Recall and Cover Activations" class="active"><a href="/employees/leads"><i class="fa fa-circle-o"></i> Leads</a></li>
+            <li  title="Create New Cover, Recall Covers, Lapsed Covers"><a href="/employees/funeral-cover"><i class="fa fa-circle-o"></i> Funeral Cover</a></li>
+            <li  title="Create New Cover, Recall Covers, Lapsed Covers"><a href="/employees/funeral-service"><i class="fa fa-circle-o"></i> Funeral Service</a></li>
+            <li  title="Employee Admin"><a href="/employees/admin"><i class="fa fa-circle-o"></i> Admin</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="/clients">
+            <i class="fa fa-pie-chart"></i>
+            <span>Clients</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/clients"><i class="fa fa-circle-o"></i> Clients</a></li>
+            <li title="Client Funeral Cover"><a href="/clients/funeral-cover"><i class="fa fa-circle-o"></i> Funeral</a></li>
+            <li title="Client Funeral Services Covers"><a href="/clients/funeral-service"><i class="fa fa-circle-o"></i> Service</a></li>
+            <li title="how to Make a Claim and Claim Forms"><a href="/clients/claims"><i class="fa fa-circle-o"></i> Claims</a></li>
+            <li title="Use Our Referral System to Make Extra Cash"><a href="/clients/referrals"><i class="fa fa-circle-o"></i> Referrals</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="/chats">
+            <i class="fa fa-laptop"></i>
+            <span>Chat</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/chats"><i class="fa fa-circle-o"></i> Chats</a></li>
+            <li><a href="/chats/staff"><i class="fa fa-circle-o"></i> Staff</a></li>
+            <li><a href="/chats/users"><i class="fa fa-circle-o"></i> Users</a></li>
+          </ul>
+        </li>
+
+<li><a href="/admin"><i class="fa fa-circle-o"></i> Admin</a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>

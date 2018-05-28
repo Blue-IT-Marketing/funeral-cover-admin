@@ -1,0 +1,170 @@
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#SaveDebitOrderButt').click(function () {
+        var varstrBankName = document.getElementById('strBankName').value;
+        var varstrBranchCode = document.getElementById('strBranchCode').value;
+        var varstrAccountType = document.getElementById('strAccountType').value;
+        var varstrAccountHolder = document.getElementById('strAccountHolder').value;
+        var varstrAccountNumber = document.getElementById('strAccountNumber').value;
+        var varstrPrincipalMemberDebitSignature = document.getElementById('strPrincipalMemberDebitSignature').value;
+        var varstrDebitDateSigned = document.getElementById('strDebitDateSigned').value;
+        var varstrSignedDebitOrderDocs = document.getElementById('strSignedDebitOrderDocs').value;
+
+        var dataString = '&vstrBankName=' + varstrBankName + '&vstrBranchCode=' + varstrBranchCode + '&vstrAccountType=' +
+                varstrAccountType + '&vstrAccountHolder=' + varstrAccountHolder + '&vstrAccountNumber=' + varstrAccountNumber +
+                '&vstrPrincipalMemberDebitSignature=' + varstrPrincipalMemberDebitSignature + '&vstrDebitDateSigned='+ varstrDebitDateSigned +
+                '&vstrSignedDebitOrderDocs=' + varstrSignedDebitOrderDocs;
+              $.ajax({
+                    type: "get",
+                    url: '/funeral/create/paymentdetails',
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ActionButtonResults').html(html)
+                  }
+              });
+    });
+});
+</script>
+ <div class="box box-body">
+     <div class="box box-title">
+         <h3>Payment Details</h3>
+     </div>
+
+     <div class="box box-info">
+         <div class="box box-title">
+             <h3>Debit Order Authorisation</h3>
+         </div>
+         <div class="box box-comments">
+             <div class="form-group">
+                 <label class="col-sm-4 control-label">Bank Name</label>
+                 <div class="col-sm-6">
+                     <input class="form-control" type="text" id="strBankName" name="vstrBankName">
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-sm-4 control-label">Branch Code</label>
+                 <div class="col-sm-6">
+                     <input class="form-control" type="text" id="strBranchCode" name="vstrBranchCode">
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-sm-4 control-label">Account Type</label>
+                 <div class="col-sm-6">
+                     <select class="form-control select2" style="width: 100%;" id="strAccountType" name="vstrAccountType">
+                         <option value="Cheque">Cheque</option>
+                         <option value="Savings">Savings</option>
+                         <option value="Transmission">Transmission</option>
+                     </select>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-sm-4 control-label">Account Holder</label>
+                 <div class="col-sm-6">
+                     <input class="form-control" type="text" id="strAccountHolder" name="vstrAccountHolder">
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 <label class="col-sm-4 control-label">Account Number</label>
+                 <div class="col-sm-6">
+                     <input class="form-control" type="text" id="strAccountNumber" name="vstrAccountNumber">
+                 </div>
+             </div>
+         <div class="box-comment">
+             <small>I hereby authorise Pro Finance to start a debit order withdrawal from my account on the date specified above and on the day
+              of each month thereafter, with a possible percentage increase each year, for the total amount due for the cover i have choosen. i understand
+              that the debit order will be run on the date i have choosen, if for whatever reason it is not successful, the policy will end, subject to the grace
+             period as described in the Terms and Conditions. no cash Payments are accepted for arrears or any other premiums. i understand that this
+              signed application form must be received by Pro Finance within 12 working days prior to the chosen deduction date, if not, the total amount due will only
+             be deducted and cover will only start in the following calendar month.</small>
+         </div>
+         <div class="box box-comment">
+                 <div class="form-group">
+                     <label class="col-sm-6 control-label pull-left">Principal Members Signature</label>
+                     <div class="col-sm-6">
+                     <textarea class="form-control" cols="44" rows="2" id="strPrincipalMemberDebitSignature" name="vstrPrincipalMemberSignature"></textarea>
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label class="col-sm-6 control-label pull-left">Date</label>
+                     <div class="col-sm-6">
+                         <input type="date" class="form-control" id="strDebitDateSigned" name="vstrDebitDateSigned" placeholder="yyyy-mm-dd">
+                     </div>
+                 </div>
+         </div>
+                 <div class="box box-comment">
+                     <label class="col-sm-6 control-label pull-left">Signed Docs</label>
+                     <div class="col-sm-6">
+                         <input type="file" id="strSignedDebitOrderDocs" name="strSignedDebitOrderDocs" size="40">
+                     </div>
+                 </div>
+         </div>
+     <div class="box box-comments">
+         <div class="box box-comment">
+             <button type="button" class="btn btn-info btn-block" id="DebitAuthorisationFormDownload"><i class="fa fa-print"></i> Download Form and Manually Sign</button>
+             <button type="button" class="btn btn-success btn-block" id="SaveDebitOrderButt"><i class="fa fa-save"></i> Save/Activate Debit Order</button>
+         </div>
+     </div>
+     </div>
+    <div class="box box-info">
+     <div class="box box-title">
+         Declaration
+     </div>
+     <div class="box box-comments">
+         <div class="box box-comment">
+             <small>
+                 I declare to the best of my knowledge and belief that the information given above is true and correct. i understand and agree that any willful misrepresentation
+                  in this application form will invalidate any benefit under this policy. i declare that i have read and understood the terms and conditions attached to this Policy, and
+                 understand their meaning and effect, and undertake to abide and to be bound by the terms and conditions of the Policy. Pro Finance shall not be liable for any amount
+                 until it has accepted this application and this policy is in force. if any person is over the age limit when joining, the claim will be
+                 repudiated and risk premiums refunded. i understand that this product is offered to me on a non-advice basis, and that should i need to,
+                 i may contact Pro Finance's Office for advice and assistance.
+
+             </small>
+         </div>
+
+         <div class="box box-comment">
+                 <div class="form-group">
+                     <label class="col-sm-6 control-label pull-left">Principal Members Signature</label>
+                     <div class="col-sm-6">
+                     <textarea class="form-control" cols="44" rows="2" id="strPrincipalMemberDeclarationSignature" name="vstrPrincipalMemberDeclarationSignature"></textarea>
+                     </div>
+
+                 </div>
+                 <div class="form-group">
+                     <label class="col-sm-6 control-label pull-left">Date</label>
+                     <div class="col-sm-6">
+                         <input class="form-control" id="strDebitDeclarationSigned" name="vstrDeclarationDateSigned" placeholder="yyyy-mm-dd">
+                     </div>
+                 </div>
+         </div>
+     </div>
+
+      <div class="box box-comments">
+                 <div class="box box-comment">
+                     <label class="col-sm-6 control-label pull-left">Signed Docs</label>
+                     <div class="col-sm-6">
+                         <input type="file" id="strSignedDeclarationDocs" name="strSignedDeclarationDocs" size="40">
+                     </div>
+                 </div>
+
+         <div class="box box-comment">
+             <button type="button" class="btn btn-info btn-block" id="DeclarationAuthorisationFormDownload"><i class="fa fa-print"></i> Download Form and Manually Sign</button>
+             <button type="button" class="btn btn-success btn-block" id="SaveDeclarationButt"><i class="fa fa-save"></i> Save/Activate Declaration</button>
+         </div>
+
+
+     </div>
+ </div>
+
+     <div class="box box-comments">
+        <div class="box box-comment">
+            <div id="ActionButtonResults">
+            <small>Action Results...</small>
+            </div>
+        </div>
+    </div>
+ </div>

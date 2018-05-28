@@ -1,0 +1,4 @@
+handlers:
+- url: /admin/branch/.*
+  login: required
+  script: branches.app

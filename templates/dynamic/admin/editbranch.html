@@ -1,0 +1,99 @@
+ <div class="box">
+        <div class="box box-body">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Branch Code</th>
+                  <th>Branch Name</th>
+                  <th>Branch Tel</th>
+                  <th>Branch Manager</th>
+                  <th>Branch Manager Tel</th>
+
+                </tr>
+                {% for branch in branches %}
+                    <tr>
+                      <td><a href="/admin/branch/{{ branch.strCompanyBranchCode }}">{{ branch.strCompanyBranchCode }}</a></td>
+                      <td>{{ branch.strCompanyBranchName }}</td>
+                      <td>{{ branch.strCompanyBranchTel }}</td>
+                      <td>{{ branch.strCompanyBranchManagerName }}</td>
+                      <td>{{ branch.strCompanyBranchManagerTel }}</td>
+
+                    </tr>
+                {% endfor %}
+
+              </table>
+            </div>
+
+
+        <div class="box box-header">
+           <h4>Branch Details</h4>
+        </div>
+            <form class="form-horizontal" name="BranchDetails" action="/dynamic/admin/editbranch.html" method="post">
+
+        <div class="form-group">
+          <label for="strBranchName" class="col-sm-3 control-label pull-left" title="Branch Name">Branch Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchName" name="vstrBranchName" placeholder="Branch Name">
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strBranchCode" class="col-sm-3 control-label pull-left" title="Branch Code">Branch Code</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchCode" name="vstrBranchCode" placeholder="Branch Code">
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strBranchAddress" class="col-sm-3 control-label pull-left" title="Branch Address">Branch Address</label>
+                <div class="col-sm-6">
+                    <textarea id="strBranchAddress" name="vstrBranchAddress"></textarea>
+                 </div>
+        </div>
+        <div class="form-group">
+          <label for="strBranchContact" class="col-sm-3 control-label pull-left" title="your Surname">Branch Contact</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchContact" name="vstrBranchContact" placeholder="Branch Contact">
+                 </div>
+        </div>
+        <div class="form-group">
+          <label for="strBranchEmail" class="col-sm-3 control-label pull-left" title="your Surname">Branch Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchEmail" name="vstrBranchEmail" placeholder="Branch Email">
+                 </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="strBranchManager" class="col-sm-3 control-label pull-left" title="Branch Manager">Manager Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchManager" name="vstrBranchManager" placeholder="Branch Manager Name">
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strBranchManagerContact" class="col-sm-3 control-label pull-left" title="Manager Contact">Manager Contact</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchManagerContact" name="vstrBranchManagerContact" placeholder="Branch Manager Contact">
+                 </div>
+        </div>
+
+        <div class="form-group">
+          <label for="strBranchManagerEmail" class="col-sm-3 control-label pull-left" title="Manager Email">Manager Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strBranchManagerEmail" name="vstrBranchManagerEmail" placeholder="Branch Manager Email">
+                 </div>
+        </div>
+
+
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+          <button type="submit" id="SaveButt" name="SaveButt"  class="btn btn-success">Save</button>
+        </div>
+        </div>
+
+        </form>
+
+        </div>
+</div>

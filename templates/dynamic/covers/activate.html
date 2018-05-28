@@ -1,0 +1,208 @@
+
+
+<script type="application/javascript">
+    $(document).ready(function() {
+        $('#ButtonActivatePolicyButt').click(function () {
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber;
+            $.ajax({
+                    type: "post",
+                    url: "/admin/active-policy/activate",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#ActionButtonResults').html(html)
+                  }
+            });
+
+
+        });
+    });
+</script>
+
+<div class="box box-info">
+    <div class="box box-title">
+        <h3>Policy Activation</h3>
+        <h5>Policy Number : {{ vstrPolicyNumber }}</h5>
+
+        <input type="hidden" value="{{ vstrPolicyNumber }}" id="strPolicyNumber" name="vstrPolicyNumber">
+
+    </div>
+
+    <div class="box box-comments">
+        <div class="box box-comment">
+            Please make sure to print out the terms and conditions for the policy about to be activated, and hand over
+            to the client concerned, <a href="/funeral-cover/terms"><strong>The Terms and Conditions</strong></a> can be accessed here...
+        </div>
+
+    </div>
+    <div class="box box-comments">
+        <div class="box box-comment">
+            <h4>Cover Details</h4>
+        </div>
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Principal Member</h4>
+            </div>
+            <table id="PrincipalMemberTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                      <th>ID Number</th>
+                      <th>Names</th>
+                      <th>Surname</th>
+                      <th>DOB</th>
+                      <th>Cover</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for Principal in PrincipalMemberList %}
+                    <tr>
+                      <td>{{ Principal.strIDNumber }}</td>
+                      <td>{{ Principal.strFullNames }}</td>
+                      <td>{{ Principal.strSurname }}</td>
+                      <td>{{ Principal.strDateOfBirth }}</td>
+                      <td>R {{ PrincipalMemberCoverAmount }}.00</td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% if SpouseList %}
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Spouse</h4>
+            </div>
+            <table id="SpouseDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Number</th>
+                        <th>Names</th>
+                        <th>Surname</th>
+                        <th>Relationship</th>
+                        <th>DOB</th>
+                        <th>Cover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Spouse in SpouseList %}
+                    <tr>
+                        <td>{{ Spouse.strIDNumber }}</td>
+                        <td>{{ Spouse.strFullNames }}</td>
+                        <td>{{ Spouse.strSurname }}</td>
+                        <td>{{ Spouse.strRelationship }}</td>
+                        <td>{{ Spouse.strDateOfBirth  }}</td>
+                        <td>R {{ SpouseCoverAmount }}.00</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        {% endif %}
+
+        {% if ChildrensList %}
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Children</h4>
+            </div>
+            <table id="ChildrensDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Number</th>
+                        <th>Names</th>
+                        <th>Surname</th>
+                        <th>Relationship</th>
+                        <th>DOB</th>
+                        <th>Cover</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for Child in ChildrensList %}
+                    <tr>
+                        <td>{{ Child.strIDNumber }}</td>
+                        <td>{{ Child.strFullNames }}</td>
+                        <td>{{ Child.strSurname }}</td>
+                        <td>{{ Child.strRelationship }}</td>
+                        <td>{{ Child.strDateOfBirth }}</td>
+                        <td>{{ ChildCoverRange }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+
+            </table>
+        </div>
+        {% endif %}
+
+        {% if ExtendedList %}
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Extended</h4>
+            </div>
+            <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Number</th>
+                        <th>Names</th>
+                        <th>Surname</th>
+                        <th>Relationship</th>
+                        <th>DOB</th>
+                        <th>Cover</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for Member in ExtendedList %}
+                    <tr>
+                        <td>{{ Member.strIDNumber }}</td>
+                        <td>{{ Member.strFullNames }}</td>
+                        <td>{{ Member.strSurname }}</td>
+                        <td>{{ Member.strRelationship }}</td>
+                        <td>{{ Member.strDateOfBirth }}</td>
+                        <td>R {{ ExtendedCoverAmount }}.00</td>
+                         <input type="checkbox" class="hidden" name="strDateofBirths" id="plan{{ Member.strDateOfBirth }}" value="{{ Member.strDateOfBirth }}" checked="checked">
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+
+            </table>
+        </div>
+        {% endif %}
+
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Premiums</h4>
+            </div>
+            <h5>Total Premiums :R  {{ vstrTotalPremiums }}.00</h5>
+
+        </div>
+
+        <div class="box box-comment">
+            <div class="box box-title">
+                <h4>Office Use</h4>
+            </div>
+            <button type="button" class="btn btn-success btn-block" ><i class="fa fa-print"></i> Print Customer Copy</button>
+            <button type="button" class="btn btn-success btn-block" id="ButtonActivatePolicyButt"><i class="fa fa-users"></i> Activate</button>
+
+        </div>
+
+</div>
+    <div class="box box-comments">
+        <div class="box box-title">
+            Policy Activation Status
+        </div>
+        <div id="ActionButtonResults">
+            Not Active
+        </div>
+    </div>
+</div>

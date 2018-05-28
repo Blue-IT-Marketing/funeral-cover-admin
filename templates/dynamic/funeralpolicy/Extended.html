@@ -1,0 +1,192 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#AddTableExtendedButt').click(function(){
+
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrExtendFullNames = document.getElementById('strExtendFullNames').value;
+            var varstrExtendSurname = document.getElementById('strExtendSurname').value;
+            var varstrExtendIDNumber = document.getElementById('strExtendIDNumber').value;
+            var varstrExtendDateofBirth = document.getElementById('strExtendDateOfBirth').value;
+            var varstrExtendRelationship = document.getElementById('strExtendRelationship').value;
+            var age = getAge(varstrExtendDateofBirth);
+            var IDLength = varstrExtendIDNumber.length;
+            var IDisNumber = isNumber(varstrExtendIDNumber);
+            if ((age >= 1) && (age <= 130 )){
+                if (IDLength == 13 ){
+                    if (IDisNumber == true){
+                        var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrFullNames=' + varstrExtendFullNames +
+                                '&vstrSurname='+ varstrExtendSurname + '&vstrIDNumber=' + varstrExtendIDNumber +
+                                '&vstrDateofBirth=' + varstrExtendDateofBirth + '&vstrRelationship=' + varstrExtendRelationship ;
+                          $.ajax({
+                                type: "post",
+                                url: "/dynamic/funeralpolicy/Extended.html",
+                                data: dataString,
+                                cache: false,
+                              success: function(html){
+                                $('#ExtendedInfoDiv').html(html)
+                              }
+                          });
+                    } else {
+                        alert("ID Number can only contain Numbers")
+                    }
+                } else {
+                    alert("ID Number Length can only be 13 Characters Long")
+                }
+            } else {
+                alert("Age of Extended Family Members should be between 1 and 130 ")
+            }
+          });
+      });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#RemoveExtendedModalButt').click(function(){
+            var varstrPolicyNumber = document.getElementById('strPolicyNumber').value;
+            var varstrRemoveIDNumber = document.getElementById('strRemoveExtendedIDNumber').value;
+            var dataString = '&vstrPolicyNumber=' + varstrPolicyNumber + '&vstrIDNumber=' + varstrRemoveIDNumber;
+              $.ajax({
+                    type: "post",
+                    url: "/funeral-cover/remove/extended",
+                    data: dataString,
+                    cache: false,
+                  success: function(html){
+                    $('#RemoveStatusUpdate').html(html)
+                  }
+              });
+          });
+      });
+</script>
+{% if MessageDiag %}
+<label class="label label-warning">{{ MessageDiag }}</label>
+{% else %}
+<div class="box">
+     <table id="ExtendedDetailsTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in ExtendedFamilyList %}
+                    <tr>
+                      <!-- TODO- Call an Ajax Function to fill up the form in employeeDetails then return the form and
+                         TODO- Insert it into the DynamicLoading Div Tag in the Modal then show the modal -->
+                      <td><a href="/funeral-cover/policies/{{ member.strPolicyNum }}">{{ member.strPolicyNum }}</a></td>
+                      <td>{{ member.strFullNames }}</td>
+                      <td>{{ member.strSurname }}</td>
+                      <td>{{ member.strIDNumber }}</td>
+                      <td>{{ member.strDateOfBirth }}</td>
+                      <td>{{ member.strRelationship }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Policy Number</th>
+                  <th>Names</th>
+                  <th>Surname</th>
+                  <th>ID Number</th>
+                  <th>Date of Birth</th>
+                  <th>Relationship</th>
+                </tr>
+                </tfoot>
+
+     </table>
+      <div class="box box-body">
+                    <div class="box box-header">
+                       <h4>Extended Family</h4>
+                    </div>
+              <form class="form-horizontal" name="SpouseDetails" action="" method="post">
+
+                  <div class="form-group">
+                      <label for="strExtendFullNames" class="col-sm-2 control-label pull-left" title="Your First and Second Names">Full Names</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strExtendFullNames" name="vstrExtendFullNames" placeholder="Full Names">
+                            </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="strExtendSurname" class="col-sm-2 control-label pull-left" title="your Surname">Surname</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strExtendSurname" name="vstrExtendSurname" placeholder="Surname">
+                             </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="strExtendIDNumber" class="col-sm-2 control-label pull-left" title="your Surname">ID Number</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="strExtendIDNumber" name="vstrExtendIDNumber" placeholder="ID Number">
+                             </div>
+                  </div>
+
+                  <!-- Date dd/mm/yyyy -->
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="Your Birth Year (yyyy-mm-dd)">Date Of Birth</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"  id="strExtendDateOfBirth" name="vstrExtendDateOfBirth"  placeholder="yyyy-mm-dd">
+
+                        </div>
+                  </div>
+
+                      <!-- /.form group -->
+
+                  <div class="form-group">
+                        <label class="col-sm-2 control-label pull-left" title="How are you related to the member)">Relationship</label>
+                        <div class="col-sm-6">
+                                     <select class="form-control select2" style="width: 100%;" id="strExtendRelationship" name="vstrExtendRelationship">
+                                         <option value="Daughter">Daughter</option>
+                                         <option value="Son">Son</option>
+                                         <option value="Father">Father</option>
+                                         <option value="Mother">Mother</option>
+                                         <option value="Grand Mother">Grand Mother</option>
+                                         <option value="Grand Father">Grand Father</option>
+                                         <option value="Cousin">Cousin</option>
+                                     </select>
+                            <!-- /.input group -->
+                        </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                      <button type="button" id="AddTableExtendedButt" name="SaveButt"  class="btn btn-success">Add Member</button>
+                      <button type="button" id="RemoveMemberButt" name="RemoveButt"  class="btn btn-warning" data-toggle="modal" data-target="#RemoveExtendedModal">Remove Member</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                  </div>
+</div>
+{% endif %}
+<div class="modal modal-warning" id="RemoveExtendedModal" tabindex="-1" role="dialog" aria-labelledby="RemoveModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="RemoveModalLabel">Remove Extended Member From Policy</h4>
+            <small>Remove Extended Family Member By ID Number</small>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input type="text" name="vstrRemoveIDNumber" id="strRemoveExtendedIDNumber" class="form-control" placeholder="ID Number">
+            <span class="glyphicon glyphicon-asterisk form-control-feedback"></span>
+          </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="RemoveExtendedModalButt">Remove</button>
+         </div>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<div id="RemoveStatusUpdate">
+ <small class="label label-info">...Remove status will appear here</small>
+</div>

@@ -1,0 +1,36 @@
+handlers:
+
+- url: /dynamic/admin/editcovers
+  login: required
+  script: covers.app
+
+- url: /dynamic/admin/editcovers/remove
+  login: required
+  script: covers.app
+
+- url: /dynamic/admin/editcovers/loadplanrows
+  login: required
+  script: covers.app
+
+- url: /dynamic/admin/editcovers/removeplanrows
+  login: required
+  script: covers.app
+- url : /admin/active-policy/create-quote
+  login: required
+  script: covers.app
+
+- url: /admin/active-policy/payment-details
+  login: required
+  script: covers.app
+
+- url: /admin/active-policy/activate
+  login: required
+  script: covers.app
+
+- url: /dynamic/admin/covers/.*
+  login: required
+  script: covers.app
+
+- url: /employees/funeral-cover/print
+  login: required
+  script: covers.app

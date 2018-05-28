@@ -1,0 +1,69 @@
+
+
+
+<div class="box box-body">
+
+   <div class="box box-title">
+     Premiums
+   </div>
+
+  <div class="box box-info">
+
+    <table id="PlanRowsTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Row</th>
+                  <th>Col</th>
+                  <th>Year Low</th>
+                  <th>Year High</th>
+                  <th>Member Type</th>
+                  <th>Premium</th>
+                  <th>Payout</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for Plan in PlansList %}
+                      <tr>
+                          <td>{{ Plan.strPlanRowNumber }}</td>
+                          <td>{{ Plan.strPLanColNumber }}</td>
+                          <td>{{ Plan.strYearLow }}</td>
+                          <td>{{ Plan.strYearHigh }}</td>
+                          <td>{{ Plan.strMemberType }}</td>
+                          <td>{{ Plan.strPremium }}</td>
+                          <td>{{ Plan.strPayout }}</td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th>Row</th>
+                  <th>Col</th>
+                  <th>Year Low</th>
+                  <th>Year High</th>
+                  <th>Member Type</th>
+                  <th>Premium</th>
+                  <th>Payout</th>
+                </tr>
+                </tfoot>
+
+              </table>
+
+
+
+   </div>
+</div>
+
+<script>
+  $(function () {
+
+    $('#PlanRowsTable').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>

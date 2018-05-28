@@ -1,0 +1,5 @@
+handlers:
+
+- url: /admin/employees/messaging
+  login: required
+  script: messaging.app

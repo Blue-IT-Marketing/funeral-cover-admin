@@ -1,0 +1,33 @@
+
+
+<div class="box">
+        <div class="box box-body">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Reference</th>
+                  <th>ID Number</th>
+                  <th>Email</th>
+                  <th>Action</th>
+
+                </tr>
+                {% for user in users %}
+
+                        <tr>
+                          <!-- TODO -- Create a form and handle it dynamically -->
+                          <td><input name="vstrReference" id="strReference" value="{{ user.strReference }}" size="21" readonly></td>
+                          <td><input name="vstrIDNumber" id="strIDNumber" value="{{ user.strIDNumber }}" size="13" readonly></td>
+                          <td><input name="vstrEmail" id="strEmail" value="{{ user.strEmail }}" readonly></td>
+                            <input type="hidden" name="vstrURL" id="strURL" value="/admin/userrights/employees/{{ user.strReference }}">
+                          <td><a href="/admin/userrights/employees/{{ user.strReference }}" target="_self"><button type="submit" id="{{ user.strReference }}" name="SaveButt"  class="btn btn-success">Access Rights</button></a></td>
+                        </tr>
+                {% endfor %}
+              </table>
+            </div>
+
+        </div>
+ </div>
+        <div id="RightsResponse">
+            click user to load user rights
+        </div>
